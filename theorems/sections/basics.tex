@@ -1,0 +1,279 @@
+\section{Basics}
+
+\paragraph{Definitions}
+\begin{itemize}
+    \item A graph $ G $ is \textit{non-trivial} if it contains at least one edge,
+    equivalently if $ G $ is not an empty graph 
+    \item The \textit{order} of $ G $ writen $ |G| $, is the number of vertices of 
+    $ G $, i.e. $ |G| = |V| $
+    \item The \textit{size} of $ G $ wirten $ ||G|| $, is the number of edges of 
+    $ G $, i. e. $ ||G|| = |E| $, if order of $ G $ is $ n $ then the size of $ G $ 
+    is between 0 and $ \binom{n}{2} $
+    \item $ N(S) $ the \textit{neighbourhood} of $ S \subseteq V $ is the set of
+    vertices in $ V $. that have and adjacent vertex in $ S $. 
+    Instead of $ N(\{v\}) $ for $ v \in V $ we write $ N(v) $
+    \item vertex of degree 1 is called \textit{leaf}
+    \item vertex of degree 0 is called \textit{isolated vertex}
+    \item \textit{minimum degree of G}, denoted by $ \delta(G) $ is the smallest
+    vertex degree in $ G $
+    \item \textit{maximum degree of G}, denoted by $ \Delta(G) $ is the highest
+    vertex degree in $ G $
+    \item graph $ G $ is called \textit{k-regular}, with $ k \in \mathbb{N} $, 
+    if all vertices have degree $ k $.
+    \item \textit{average degree of G} is defined as $ d(G) = 
+    \frac{\sum_{v \in V} deg(v)}{|V|} $ \\ We have 
+    $$ \delta(G) \leq d(G) \leq \Delta(G) $$  
+    with equality if and only if $ G $ is $ k$-regular
+
+\end{itemize}
+
+\paragraph{Handshake Lemma}
+For ever graph $ G = (V,E) $ we have
+$$ 2|E| = \sum_{v\in V} d(v) $$ 
+\begin{proof}
+   By double counting the set $ X = \{(e,x) : e \in E(G), x \in V(G), x \in e\}  $ then
+   $$ |X| = \sum_{v\in V(G)} d(x) $$ 
+   and 
+   $$ |X| = \sum_{e\in E(G)} 2 = 2|E(G)|$$
+   by the principle of double counting the terms are equal.
+\end{proof}
+
+\paragraph{Corollary} From this follows that the sum of all vertex degrees is even and 
+therefore the number of vertices with odd degree is even.
+
+\paragraph{Proposition 3} If a graph G has minimum degree $ \delta(G) \geq 2 $, then
+$ G $ has a path of length $ \delta(G) $ and a cycle with at least $ \delta(G) + 1 $
+vertices.
+\begin{proof}
+Let $ P = (x_0,...,x_k) $ be a longest path in $ G $. Then $ N(x_0) \subseteq V(P)$,
+otherwise for $ x \in N(x_0) \setminus V(P) $ the path $ (x,x_0,x_1,...,x_k) $ would
+be a longer path.
+
+\smallskip
+Let $ i $ be the largest index such that $ x_i \in N(x_0) $, then $ i \geq |N(x_0)| 
+\geq \delta $. So $ (x_0,x_1,...,x_i,x_0) $ is a cycle of length at least 
+$ \delta(G) + 1$.
+\end{proof}
+
+\paragraph{Proposition 4} If for distinct vertices $ u $ and $ v $ a graph has 
+a $u$-$v$-walk, then it has a $u$-$v$-path.
+\begin{proof}
+    Consider a $u$-$v$-walk $ W $ with the smallest number of edges. Assume that $ W $
+    does not form a path, then there is a repeated vertex, $ w $, i.e.
+    $$ W = u,e,v_1,e_1,...,e_k,w,e_{k+1},...,e_l,w,e_{l+1},...,v $$
+    Then $ W_1 = u,e,v_1,...,e_k,w,e_{k+1},...,v $ is a shorter $u$-$v$-walk, 
+    a contradiction.
+\end{proof}
+
+
+\paragraph{Propostion 5} If a graph has a closed walk of odd length, then it contains 
+an odd cycle.
+\begin{proof}
+   Let $ W $ be the shortest closed odd walk. If $ W $ is a cycle the Proposition holds. 
+   Otherwise there is a repeated vertex, so $ W $ is an edge-disjoint union of 
+   two closed walks. The sum of the lengths of these walks is odd, therefore one 
+   of them is an odd closed walk shorter than $ W $ a contradiction to the minimality
+   of $ W $.
+\end{proof}
+
+\paragraph{Proposition 6} If a graph has a closed walk with a non-repeated edge, then
+the graph contains a cycle.
+\begin{proof}
+    Let $ W $ be a shortest walk with a non-repeated edge $ e $. If $ W $ is a cycle, 
+    we are done. Otherwise, there is a repeated vertex and $ W $ is a union of 
+    two closed walks $ W_1 $ and $ W_2 $ that are shorter than $ W $. One of them
+    say $ W_1 $, contains $ e$, a non-repeated edge. This contradicts the 
+    minimality of $ W$.
+\end{proof}
+
+\paragraph{Definition bipartite}
+A graph $ G = (V,E) $ is called $ bipartite $ if there exists natural numbers $ m,n $
+such that $ G $ is isomorphic to a subgraph of $ K_{m,n} $. Then the vertex set 
+can be written as $ V = A \cupdot B $ such that $ E \subseteq \{ab: a\in A,
+b \in B\}$. The sets $ A $ and $ B $ are called the $ partite $ $ sets $ of $ G $
+
+
+
+\paragraph{Proposition 1.5} A graph is bipartite if and only if it has no cycles 
+of odd length.
+\begin{proof}{skript} \\
+    \enquote{$\Rightarrow$}  \\
+    Assume that $ G $ is a bipartite graph with parts $ A $ and $ B $. Then any cycle
+    has a form $a_1,b_1,a_2,b_2,...,a_k,b_k,a_1 $ where $ a_i \in A, b_i \in B, 
+    i \in [k]$. Thus every cycle has even length. 
+
+    \smallskip
+    \noindent\enquote{$\Leftarrow$} \\
+    Assume $ G $ does not have cycles of odd length. We can assume that $ G $ is 
+    connected, otherwise we can treat the connected components separately.
+    Let $ v \in V(G) $.
+    Let $ A = \{u \in V(G) : dist(u,v) \equiv 0 \text{ (mod } 2)\} $ and let
+    $ B = \{u \in V(G) : dist(u,v) \equiv 1 \text{ (mod } 2)\} $  We claim that $ G $ is 
+    bipartite with parts $ A $ and $ B $. To verify this it is sufficient to 
+    prove that $ A $ and $ B $ are independent sets.
+    Let $u_1u_2 \in E(G) $ and let $ P_1 $ be a shortest $u_1$-$v$-path and 
+    $ P_2 $ a shortest $u_2$-$v$-path. Then the union of $ P_1, P_2 $ 
+    and $ u_1u_2 $ forms a closed walk $ W $. If $ u_1, u_2 \in A $ or 
+    $ u_1, u_2 \in B $ then $ W $ is a closed odd walk, because $ dist(v, u_1) $ 
+    and $ dist(v, u_2) $ are both even or odd. Thus by Prop. 5 $ G $ contains
+    an odd cycle, a contradiction. Thus for any edge $ u_1u_2 $ the adjacent
+    vertices $ u_1 $ and $ u_2 $ are in different parts $ A $ or $ B $.
+    Therefore $ A $ and $ B $ are independent sets. 
+\end{proof}
+\begin{proof}{Diestel} $ $  \\
+    \enquote{$\Leftarrow$} \\
+    Let $ T $ be a spanning tree in $ G $, pick a root $ r \in T $ and denote the 
+    associated tree-order on $ V $ by $ \leq_T $ (this order expressing height if 
+    $ x < y $ then $ x $ lies $ below $ $ y $ in $ T $). For each $ v \in V(G) $ the 
+    unique path $r$-$v$-$T$ has odd or even length.
+    This defines a bipartition of $ V(G) $, we show that $ G $ is bipartite with this
+    partition.
+    Let $ e = xy $ be an edge of $ G$. If $ e \in T $ with $ x <_T y $ say, then 
+    $r$-$y$-$T$ = $r$-$xy$-$T$ and so $ x $ and $ y $ lie in different partition 
+    classes. If $ e \notin T $ then $ C_e := x$-$y$-$T +$ $e $ is a cycle, and
+    by the case treated already the vertices along $x$-$y$-$T$ alternate between 
+    the two classes. Since $ C_e $ is even by assumption, $ x $ and $ y $ again lie
+    in different classes. 
+\end{proof}
+
+\paragraph{Euler tour} A closed walk that traverses every edge of the graph 
+exactly once is called an $ Euler \text{ }tour $.
+\paragraph{Theorem 1.6 (Eulerian Tour Condition)} A connected graph has an Eulerian 
+Tour if and only if every vertex has even degree.
+\begin{proof}
+   \enquote{$\Rightarrow$} \\ 
+   The degree condition is necessary for an euler tour, because a vertex appearing
+   $ k $ times in an Euler tour (or $ k + 1 $ times if it is the starting and 
+   finishing vertex) must have degree $ 2k $.
+
+   \smallskip
+   \noindent\enquote{$\Leftarrow$} \\
+   Show by induction on $ ||G|| $ that every connected Graph $ G $ with all degrees
+   even has an Euler tour. $ ||G|| = 0 $ is trivial. 
+
+   \smallskip
+   Now let $ ||G|| \geq 1 $, since all degrees are even, we can find in $ G $
+   a non-trivial closed walk that contains no edge more than once. To find this 
+   walk we consider $ W $ a walk of maximal length and write $ F $ for 
+   the set of its edges. If $ F = E(G) $, then $ W $ is an Euler tour.
+   
+   \smallskip
+   Suppose, therefore $ G^\prime := G - F $ has an edge. \\
+   For every vertex $ v \in G $, an even number of edges of $ G $ at $ v $ lies 
+   in $ F $, so the degrees of $ G^\prime $ are again all even.
+   Since $ G $ is connected, $ G^\prime $ has an edge $ e $ incident with a vertex on
+   $ W $. By I.H. the component $ C $ of $ G^\prime $ containing $ e $ has an Euler
+   tour. Concatenating this with $ W $ (suitably re-indexed), we obtain a closed walk
+   in $ G $ that contradicts the maximal length of $ W.$
+
+   \end{proof}
+
+
+\paragraph{Definitions}
+\begin{itemize}
+    \item graph $ G $ is $ connected $ if any two vertices are linked by a path. 
+    \item a maximal connected subgraph of $ G $ is called a $ connected $ 
+    $ component $ of $ G$.
+    \item acyclic graphs are called $ forests $
+    \item a graph $ G $ is called a $ tree $ if $ G $ is connected and acyclic.
+\end{itemize}
+
+\paragraph{Lemma 7} Every tree on at least two vertices has a leaf.
+\begin{proof}
+    If a tree $ T $ on at least two vertices does not have leaves
+    then every vertex has degree > than 2, so we have a cycle in $ T $ 
+    with length $ \geq $ 3, a contradiction.
+\end{proof}
+
+\paragraph{Lemma 8} A tree of order $ n \geq 1 $ has exactly $ n - 1 $ edges.
+\begin{proof}
+    We prove the statement by induction on $ n$. When $ n = 1$, there are no edges.
+
+    \smallskip
+    \noindent\textbf{I.H.:} Assume that each tree on $ n = k $ vertices has 
+    $ k - 1 $ edges, with $ k \geq 1 $.
+    
+    \smallskip
+    \noindent\textbf{Step:} Lets prove that each tree on $ k+1 $ vertices has $ k $ edges.
+    Consider a tree $ T $ on $ k + 1 $ vertices. Since $ k + 1 \geq 2 $, $ T $ has 
+    a leaf $ v $. Let $ T^\prime = T - \{v\}$. We see that $ T^\prime $ is connected
+    because any $u$-$w$-path in $ T $, for $ u \neq v $ and $ w \neq v $, does not 
+    contain $ v $. We see also that $ T^\prime $ is acyclic, because deleting 
+    vertices from an acyclic graph does not create new cycles. Thus $ T^\prime $ 
+    is a tree on $ k $ vertices. By I.H. $ |E(T^\prime)| = k-1$. Thus 
+    $ |E(T)| = |E(T^\prime)| + 1 = (k-1)+1 = k.$
+
+\end{proof}
+
+\paragraph{Lemma 9} Every connected graph contains a spanning tree.
+\begin{proof}
+    Let $ G $ be a connected graph. Consider $ T $, an acyclic spanning subgraph of 
+    $ G $ with largest number of edges. If it is a tree we are done.
+
+    \smallskip
+    Otherwise, $ T $ has more than one component. Consider vertices $ u $ and 
+    $ v $ from different components of $ G$. Consider a shortest $u$-$v$-path $ P $
+    in $ G$. Then $ P $ has an edge $ e = xy $ with exactly one vertex $ x $ in 
+    one of the components of $ T$. Then $ P $ has an edge $ e = xy $ with exactly
+    one vertex $ x $ in one of the components of $ T$. Then $ T \cup \{e\} $ is 
+    acyclic. 
+\end{proof}
+
+\paragraph{Lemma 10} A connected graph on $ n \geq 1 $ vertices and $ n-1 $ edges is 
+tree.
+\begin{proof}
+   TODO skript 
+\end{proof}
+
+\paragraph{Lemma 11} The vertices of every connected graph on $ n \geq 2 $ vertices 
+can be ordered $ (v_1,...,v_n) $ so that for every $ i \in \{1,...,n\} $ the 
+Graph $ G[\{v_1,...,v_i\}] $ is connected.
+\begin{proof}
+   TODO skript 
+\end{proof}
+
+\paragraph{Tree equivalences} For any graph $ G = (V,E) $ the following are equivalent:
+\begin{enumerate}
+    \item $G $ is a tree, i.e. $ G $ is connected and acyclic.
+    \item $G $ is connected, but for any $ e \in E $ the graph $ G - e $ is not 
+    connected (minimally connected)
+    \item $G $ is acyclic, but for any $ x,y \in V(G), xy \notin E(G) $ the graph 
+    $ G + xy $ has a cycle. (maximaly acyclic) 
+    \item $G $ is connected and 1-degenerate
+    \item $G $ is connected and $ |E| = |V| - 1 $
+    \item $G $ is acyclic and $ |E| = |V| - 1 $
+    \item $G $ is connected and every non-trivial subgraph of $ G $ has a vertex of 
+    degree at most 1.
+    \item Any two vertices are joined by a unique path in $ G $.
+\end{enumerate}
+\begin{proof}
+    
+\end{proof}
+
+\paragraph{Definition Contract}
+For an edge $ e = xy $ in $ G $ we define $ G \circ e $ as the graph obtained from 
+$ G $ by identifying $ x $ and $ y $ and removing (if necessary) loops and 
+multiple edges. We say that $ G \circ e $ arises from $ G $ by 
+\textit{contracting the edge e}.
+
+\paragraph{Definition Complement}
+The $ complement $ of $ G $, denoted by $ \overline{G} $ is defined as the graph
+$ (V,\binom{V}{2} \setminus E)$. In particular $ G + \overline{G} $ is a 
+complete graph and $ \overline{G} = (G + \overline{G}) - E $. 
+
+
+\paragraph{problem sheets 1 and 2}
+
+\paragraph{problem 1}
+
+\paragraph{problem 2}
+
+\paragraph{problem 3}
+
+\paragraph{problem 4}
+
+\paragraph{problem 5}
+
+\paragraph{problem 6}
+
+\paragraph{problem 7}
