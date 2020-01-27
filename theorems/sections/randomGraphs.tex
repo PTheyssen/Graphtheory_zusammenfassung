@@ -1,0 +1,53 @@
+\section{Random Graphs}
+Example: $ n = 4 $ and $ p = \frac{1}{3} $
+\\
+empty graph has prob $ = \frac{2}{3}^6 $
+
+\smallskip
+graph with 2 edges has prob $ \frac{1}{3}^2 \cdot \frac{2}{3}^4 $
+
+\paragraph{Note}
+let m be number of edges in G
+$$ \sum_{G graph on [n]} Prob(G) = \sum_{m=0}^{\binom{n}{2}} \binom{\binom{n}{2}}{m}
+\cdot p^m (1-p)^{\binom{n}{2}-m} = (p + (1 -p)^{\binom{n}{2}}) = 1 $$
+
+\smallskip
+Lemma 107 tells us that Erdos-Renyi model is universal, it gives us any graph.
+
+\smallskip
+The type of estimats of lemma 108 are used in many different results.
+
+\smallskip
+Lemma 109: count cycle of $ k $ vertices overcounting for k in also in different order 
+therefore divide by $ 2k $ and times $ p^k $ because we have $ k $ edges in our cycle
+
+\smallskip
+purpose: for this lemma, to prove ramsey result, but the main purpose is the result
+of erdos-Hajnal (thm 9.3) that graph with arbitrarily high girth (no cycle of length smaller ) and abitrarily high chromatic number.
+
+
+\paragraph{Theorem 9.3 (Erdos-Hajnal)} 
+sketch: take random graph, number of short cycles (length at most k) is < $ \frac{n}{2} $ 
+delete a vertex from each of these cycles and get a graph $G^\prime $ so the girth
+of $ G^\prime $ > $ k $.
+We know chromatic number of G prime is $ \geq \frac{|V(G^\prime)|}{\alpha(G^\prime)} $
+with lemma 108 we can show $ \alpha $ is not so big and therefore get a lower bound
+
+\smallskip
+two tricks: 
+\begin{itemize}
+    \item random graph and kill short cycle 
+    \item bound the independence number (co-clique number) size of the largest 
+    independent set
+\end{itemize}
+
+\bigskip 
+papers on probablistic method are not easy to read, because it involves choosing the 
+parameters correctly and asymptotic analysis. But the results obtained by 
+probablistic mehtod cannot be obtained by any other method.
+
+\paragraph{Graph Properties and threshold functions}
+\textit{graphproperty} is a set of graphs. 
+ Example: $$\textit{P} = \{G: \text{ G is connected}\}  $$
+
+ 

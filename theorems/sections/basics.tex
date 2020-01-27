@@ -216,20 +216,44 @@ Tour if and only if every vertex has even degree.
     in $ G$. Then $ P $ has an edge $ e = xy $ with exactly one vertex $ x $ in 
     one of the components of $ T$. Then $ P $ has an edge $ e = xy $ with exactly
     one vertex $ x $ in one of the components of $ T$. Then $ T \cup \{e\} $ is 
-    acyclic. 
+    acyclic. If there would be a cycle, it would contain $ e $, however $ e $ connects
+    to components, therefore cannot be part of a cylce ($ e $ would be a repeated 
+    edge). Thus $ T \cup \{e\} $ is a bigger spanning acyclic subgraph of $ G $
+    contradicting the maximality of $ T $.
 \end{proof}
 
 \paragraph{Lemma 10} A connected graph on $ n \geq 1 $ vertices and $ n-1 $ edges is 
 tree.
 \begin{proof}
-   TODO skript 
+    Let $ G $ be a connected graph on $ n $ vertices with $ n-1 $ edges. 
+    Assume $ G $ is not a  tree, i.e. contains a cycle. We therefore 
+    can remove a edge so that $ G $ is still connected.
+    This is a contradiction because a graph on $ n $ vertices with $ n-2 $ edges 
+    cannot be connected. Because a walk from vertex $ 1 $ to vertex $ n $ has to 
+    have at least $ n-1 $ edges.
 \end{proof}
 
 \paragraph{Lemma 11} The vertices of every connected graph on $ n \geq 2 $ vertices 
 can be ordered $ (v_1,...,v_n) $ so that for every $ i \in \{1,...,n\} $ the 
 Graph $ G[\{v_1,...,v_i\}] $ is connected.
-\begin{proof}
-   TODO skript 
+\begin{proof}{skript} $ $ \\
+    Let $ G $ be a connected graph on $ n $ vertices. It contains a spanning tree $ T $.
+    Let $ v_n $ be a leaf of $ T $, let $ v_{n-1} $ be a leaf of $ T - \{v_n\} $,
+    let $ v_{n-2} $ be a leaf of $ T - \{v_n,v_{n-1}\} $ and so on.
+    Let $ v_k $ be a leaf in $ T - \{v_n, v_{n-1},...,v_{k+1}\} $, $ k = 2,...,n $.
+    Since deleting a leaf does not disconnect a tree, all resulting graphs form
+    a spanning trees of $ G[{v_1,...,v_i}] $, $ i = 1,...,n $. A graph $ H $ having 
+    a spanning tree or any connected spanning subgraph $ H^\prime $ is connected
+    because a $u$-$v$-path in $ H^\prime $ is a $u$-$v$-path in $ H $. This observation
+    completes the proof.
+\end{proof}
+\begin{proof}{diestel} $ $ \\
+    Pick any vertex as $ v_1 $, and assume inductively that $ v_1,...,v_i $ have been 
+    chosen for some $ i < |G| $. Now pick a vertex $ v \in G - G_i $. As $ G $ is 
+    connected, it contains a $v$-$v_1$ path $ P$. Choose $ v_{i+1} $ as the last vertex
+    of $ P $ in $ G - G_i $, then $ v_{i+1} $ has a neighbour in $ G_i $. 
+    If we consider $ i+1 $ then we simply add $ v_{i+1} $ to our $ G_i $, Thus
+    $ G_{i+1} := G_i \cup \{v_{i+1}\} $ which is also connected.
 \end{proof}
 
 \paragraph{Tree equivalences} For any graph $ G = (V,E) $ the following are equivalent:
@@ -246,9 +270,59 @@ Graph $ G[\{v_1,...,v_i\}] $ is connected.
     degree at most 1.
     \item Any two vertices are joined by a unique path in $ G $.
 \end{enumerate}
-\begin{proof}
-    
+\begin{proof} $ $ \\
+    (i) $ \Rightarrow $ (ii): \\
+    $ G $ is connected and acyclic, now assume for any edge $ e = xy $ the graph
+    $ G^\prime = G - e $ would still be connected. Then $ G^\prime $ has a 
+    $x$-$y$-path $ P $. But $ P \cup {e} $ is a cycle in $ G $ which contradicts
+    that $ G $ is acyclic.
+
+    \smallskip
+    \noindent(ii) $ \Rightarrow $ (i): \\
+    $ G $ is connected and for any edge $ e $ the graph $ G - e $ is not connected.
+    We want to show that $ G $ is acyclic. If $ G $ would have a cycle we could simply
+    remove an edge from that and the resulting graph would still be connected, 
+    a contradiction.
 \end{proof}
+\begin{proof}
+    (i) $ \Rightarrow $ (iv): \\
+
+
+    \smallskip
+    \noindent(vi) $ \Rightarrow $ (i): \\
+\end{proof}
+\begin{proof}
+    (i) $ \Rightarrow $ (vii): \\
+
+    \smallskip
+    \noindent(vii) $ \Rightarrow $ (i): \\
+\end{proof}
+\begin{proof}
+    (i) $ \Rightarrow $ (viii): \\
+
+    \smallskip
+    \noindent(viii) $ \Rightarrow $ (i): \\
+\end{proof}
+
+
+\paragraph{Definition $d$-degenerate}
+If there is a vertex ordering $ v_1,...,v_n $ of $ G $ and a $ d \in \mathbb{N} $
+such that 
+$$ |N(v_i) \cap \{v_{i+1},...,v_n\}| \leq d $$ 
+for all $ i \in [n-1] $ then $ G $ is called $ d$-$degenerate $. The minimum
+$ d $ for which $ G $ is $ d$-$degenerate $ is called the $ degeneracy $ of $ G $.
+
+\smallskip
+\noindent Every finite planar graph has a vertex of degree five or less, therefore 
+every planar graph is 5-degenerate.
+
+\paragraph{Definition arboricity}
+The least number of trees that can cover the edges of a graph is its arborictiy.
+
+\smallskip
+\noindent It is a measure for the graphs maximum local density: it is small if and only if the 
+graph is nowhere dense, in the sense that there is no subgraph $ H $ with large 
+$ \epsilon(H) = \frac{E(H)}{V(H)} $.
 
 \paragraph{Definition Contract}
 For an edge $ e = xy $ in $ G $ we define $ G \circ e $ as the graph obtained from 
@@ -260,6 +334,30 @@ multiple edges. We say that $ G \circ e $ arises from $ G $ by
 The $ complement $ of $ G $, denoted by $ \overline{G} $ is defined as the graph
 $ (V,\binom{V}{2} \setminus E)$. In particular $ G + \overline{G} $ is a 
 complete graph and $ \overline{G} = (G + \overline{G}) - E $. 
+
+\paragraph{Definitions} 
+\begin{itemize}
+    \item \textit{girth of G}, denoted by $ g(G) $ is the length of the shortest cycle
+    in $ G $, if $ G $ is acyclic, its girth is said to be $ \infty $
+    \item \textit{circumference of G}, is the length of the longest cycle
+    if $ G $ is acyclic the circumference is said to be $0$
+    \item $ G $ is called $ Hamiltonian $ if $ G $ has a spanning cycle, i.e. 
+    a cycle that contains every vertex of $ G $. In other words the circumference is 
+    $ |V|$
+    \item $ G $ is called $ traceable $ if $ G $ has a spanning path
+    \item For two vertices $ v $ and $ u $ in $ G $, the 
+    \textit{distance between u and v }, denoted by $ d(v,u) $ is the length of 
+    a shortest $u$-$v$-path in $ G $. If no such path exists $ d(u,v) = \infty $
+    \item The $ diameter $ of $ G $, denoted by diam($G$), is the maximum distance 
+    among all pairs of vertices in $ G $, i.e.
+    $$ \text{diam}(G) = \underset{u,v \in V}{\max} \; d(u,v)$$
+    \item \textit{eccentricity}, ecc($v$) is the greatest distance of $ v $ to any 
+    other vertex.
+    \item The \textit{radius of G }, denoted by rad($G$) is defined as 
+    $$ \text{rad}(G) =  \underset{u \in V}{\min} \: \underset{n \in V}{\max} \;d(u,v) $$
+    its the vertex that has the smallest eccentricity 
+
+\end{itemize}
 
 
 \paragraph{problem sheets 1 and 2}
