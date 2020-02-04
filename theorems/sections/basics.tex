@@ -359,19 +359,159 @@ complete graph and $ \overline{G} = (G + \overline{G}) - E $.
 
 \end{itemize}
 
-
-\paragraph{problem sheets 1 and 2}
-
+\paragraph{problem sheets}
 \paragraph{problem 1}
+Determine the number of edges, average degree, diameter and girth of the 
+\textit{d-dimensional hypercube}.
+\begin{proof}
+    For number of edges consider vertex degree, for average degree observe that $ Q_d $ 
+    is regular.
 
-\paragraph{problem 2}
+    \bigskip
+    \noindent claim: $ Q_d $ has diameter $ d $.
+
+    \smallskip
+    \noindent First prove that for any $ x,y \in V $ the distance $ d(x,y) $ in $ Q_d $ is 
+    the number of postions where they differ. Suppose they differ in $ l \geq 1 $ 
+    positions then we get a path of length $ l $ by inverting each entry where they 
+    differ sequentially. There can not be a shorter Path since each step 
+    can only change one position. \\
+    Therefore the diameter is $ d $, because thats the maximum amount of positions 
+    where two sequences can differ, consider $ 00...0 $ and $ 11...1 $.
+
+    \bigskip
+    \noindent claim: girth of $ Q_d $ is $ \infty $ if $ d = 1 $ and otherwise 4.
+
+    \smallskip
+    \noindent
+    If $ d = 1 $, the resulting graph $ Q_1 $ is acyclic. If $ d \geq 2 $ we first 
+    observe that then $ Q_d $ is triangel-free. Suppose otherwise than there is 
+    a triangle $ xyz $ in $ Q_d $, now consider the amount of 1's in $ |v|, v \in V $.
+    Wlog $ |x| $ is even then $ |y| $ must be odd and $ |z| $ must be even.
+    But $ zx $ is an edge, a contradiction. \\
+    On the other hand $ Q_d $ does contain 4-cycles:
+    $$ (00...0, 010...0, 100...0, 00...0)$$
+\end{proof}
+
+\paragraph{problem 2} 
+Show that any tree $ T $ has at least $ \Delta(T) $ leaves. 
+\begin{proof}
+Induction on $ n = |T| $.
+\\
+\textbf{Base:} tree on two vertices has 2 leaves and maximum degree is 1.
+
+\smallskip
+\noindent \textbf{Step:} remove a leaf $ v $ from $ T $ and let $ u $ be its neighbour,
+so that $ T^\prime := T - v $ we than have two cases:
+
+\smallskip \noindent
+case 1: $ \Delta(T) = \Delta(T^\prime) $ \\
+We know by I.H. that $ T^\prime $ has at least $ \Delta(T^\prime) $ leaves, thus 
+if the maximum degree of $ T $ is the same the claim holds.
+
+\bigskip \noindent
+case 2: $ \Delta(T) = \Delta(T^\prime) + 1 $
+This means $ u $ is the vertex with maximal degree in $ T $, but we know that the
+leafs of $ T $ can only be the leafs of $ T^\prime $ plus the leaf $ v $ we removed
+therefore $ T $ has $ \Delta(T^prime) + 1 $ leafs.
+
+\end{proof}
+\begin{proof} By Counting $ $ \\
+Let $ T $ be any tree. Let $ L \subseteq V $ be the set of leaves and 
+$ N = V \setminus L $ the set of non-leaves in $ T $. Let $ u $ be a vertex 
+with maximum degree $ \Delta(T) $. We know that a tree has $ |V| + 1 $ edges.
+
+\begin{align}
+    2 \cdot (|V| - 1) &= \sum_{v \in V(T)} d(v) \\
+    &= d(u) + \sum_{v \in L} d(v) + \sum_{v \in N \setminus \{u\}} d(v) \\
+    &\geq \Delta(T) + \sum_{v \in L} 1 + \sum_{v \in N \setminus \{u\}} 2 \\
+    &= \Delta(T) + |L| \cdot 1 + (|V| - |L| - 1) \cdot 2  \\
+    &= \Delta(T) + 2 \cdot (|V| - 1) - |L|
+\end{align}
+From this follows $ |L| \geq \Delta(T) $, as desired.
+\end{proof}
 
 \paragraph{problem 3}
+Prove that either a graph or its complement is connected.
+\begin{proof}
+    Let $ G = (V,E) $ be any non-empty graph. We assume $ G $ is not connected and 
+    shall argue that $ \overline{G} $ is connected. \\
+    Since $ G $ is disconnect, we find two vertices $ u,w \in V $ and a connected
+    component $ C $ of $ G $ such that $ u \in C $ and $ w \notin C $. Now in 
+    $ \overline{G} $ all vertices in $ C $ are adjacent to $ w $. And in 
+    particular $ uw \in E(\overline{G}) $, so all vertices lie in a single connected
+    component of $ \overline{G} $, which is therefore connected.
+\end{proof}
+
 
 \paragraph{problem 4}
+Prove that the vertex set of any graph can be partitioned into two sets such that for
+each vertex, at least half of its neighbors belong to the other set.
+\begin{proof}
+Consider partition of $ V(G) $ into disjoint sets $ A,B $, maximizing the number 
+of edges between $ A $ and $ B $. We will show that moving any vertex to the other sets 
+results in a partition that has less edges between the sets than the original one.
+
+\smallskip \noindent
+Pick wlog a vertex $ v \in A $. Let $ d_B = N(v) \cap B $ and $ d_A = d - d_B $.
+Now consider $ A^\prime = A - v $ and $ B^\prime = B + v $
+$$ |\{uw \in E: u \in A^\prime, w \in B^\prime\}| =
+|\{uw \in E: u \in A, w \in B\}| - d_B + (d - d_B) $$
+but by the maximality of edges between $ A $ and $ B $ we have:
+$$|\{uw \in E: u \in A^\prime, w \in B^\prime\}| \leq 
+|\{uw \in E: u \in A, w \in B\}|$$
+which gives us 
+$$ -d_B + (d - d_B) \leq 0 \iff d_B \geq d/2 $$ 
+\end{proof}
+
 
 \paragraph{problem 5}
+Show that the following statements are equivalent
+\begin{enumerate}
+    \item $ G $ is connected, but $ G - e $ is disconnected for every edge $ e $
+    \item Any two vertices in $ G $ are linked by a unique path
+\end{enumerate}
+\begin{proof} $ $ \\
+    \enquote{(ii) $\Rightarrow$ (i)}: trivial
+
+    \smallskip \noindent
+    \enquote{(i) $\Rightarrow$ (ii)}: $ $ \\
+    As $ G $ is connected, there is at least one path between any two vertices of $ G$.
+    Lets assume for the sake of contradiction that there are some vertices $ x $ and 
+    $ y $ that are joind by at least two paths $ P_1, P_2$. As $ P_1 \neq P_2 $ there 
+    is and edge $ e_0 $ that lies in $ P_1 $ but not in $ P_2$. We shall show that 
+    the graph $ G - e_0 $ is still connected, which will be a contradiction.
+
+    \smallskip \noindent
+    Idea is to consider the path between any two vertices $ u,v $ and remove remove 
+    the edge $ e_0 $ and still show we can reach $ v $ from $ v $ by using 
+    the vertices $ x $ and $ y $ which have two paths between them and simply put 
+    $ e_0 $ in one of them, then we can user the other one by going from one endpoint 
+    from $ e_0 $ to $ x $, possible because $ G $ is connected. Then to $ y $ using the 
+    other path and then from $ y $ to the other endpoint of $ e_0 $ and finally to $ v $.
+    Thus $ u $ and $ v $ are still connected after removing $ e_0 $ a contradiction. 
+
+\end{proof}
 
 \paragraph{problem 6}
+Let $ T_1,...,T_k $ be subtrees of a tree $ T $, any two of which have at least 
+one vertex in common. Prove that there is a vertex common to all $ T_i$.
+\begin{proof}
+   Apply induction on $ |T| $. If $ |T| = 1 $ then $ T $ consists of a single vertex,
+   say $ v$. If $ T_1,...,T_k $ are subtrees of $ T $ with pairwise intersecting
+   vertex sets, then we must have $ T_i = T $ for each $ i = 1,...,k$. It follows 
+   that $ v $ belongs to each $ T_i$.
+   
+   \smallskip \noindent
+   So assume $ n \geq $ is an integer, and let us suppose this result holds for 
+   all trees of order $ n - 1 $. Suppose $ T $ is a tree with $ |T| = n $ and 
+   $ T_i,...,T_k $ are subtrees of $ T $. We assume $ k \geq 2 $. Let $ v $ be a 
+   leaf in $ T $ and let $ T^\prime = T - v $ be the tree resulting from removing
+   this leaf. 
+\end{proof}
 
 \paragraph{problem 7}
+
+\paragraph{Diestel}
+
+\paragraph{Lovasz}

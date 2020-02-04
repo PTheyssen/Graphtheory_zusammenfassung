@@ -32,71 +32,27 @@
     \item see test as sports event to show of all the hard work in the past
 \end{enumerate}
 
-\section{Basic Combinatorics}
-\paragraph{Fundamental Principle of Counting (Multiplicationrule)} $ $ \\
-We want to construct $k$-Tupel $ (a_1,a_2,...,a_k) $ where the $ k $ places of the 
-tuple are filled left to right. With $ j_1 $ being the amount of choices for $ a_1 $
-and $ j_i $ the amount of choices of $ a_i $ with $ i \in \{1,...,k\} $
 
-$$ j_1 \cdot j_2 \cdot ... \cdot j_k \text{ different } k\text{-Tupel} $$
-
-\paragraph{Example: Lotto} $ $ \\  
-6 Numbers out of 49 are being drawn in succesion. \\
-Therefore $ 49 \cdot 48 \cdot 47 \cdot 46 \cdot 45 \cdot 44
- = 10\text{ }068 \text{ }347 \text{ }520 $ different Tuples.
-
-\paragraph{$k$-Permutation with order}
-$$ |M|^k = |\{(a_1,a_2,...,a_k): a_j \in M \text{ for } j = 1,...,k\}| $$
-
-\paragraph{$k$-Permutation without order}
-$$ \{(a_1,...,a_k): a_i \neq a_j \text{ for } 1 \leq i \neq j \leq k\} $$
-
-\section{Double Counting}
-Describing a finite set $ X $ from two perspectives, with two Formulas.
-Since the two Formulas/Expressions equal the size of the same set they equal each other.
-
-\smallskip
-If the sets are different, you can try to show the sets are bijective.
-Then the bijection rule shows that the expressions are equal.
-
-\paragraph{Handshake Lemma}
-$$ \sum_v d(v) = 2e $$ 
-
-\begin{proof}
-    We can count the size of the set of vertex-edge incidences in two ways.
-    By summing the degrees of the vertices or by counting two incidences for every edge.
-    Since we are counting the same set these expression must be equal (double counting).
-\end{proof}
-
-\smallskip
-From this follows that an undirected graph contains an even number of 
-vertices of odd degree, since an odd number would mean \\ $ (2e) \text{ mod } 2 = 1 $ 
-\textbf{contradiction}. 
-
-\paragraph{Counting trees}
-What is the number $ T_n $ of different trees that can be formed with n vertices,
-counting also isomorphic trees (naming of vertices is important)?
-
-$$ \text{Cayley's formula: } T_n = n^{n - 2} $$ 
-\begin{proof}
-Count the number of different sequences of directed edges that can be added to an empty
-graph on n vertices to get an rooted tree.
-
-
-\end{proof}
-
-
-\section{Minimality/Maximality of Object}
+\section{Basics}
+\paragraph{Minimality/Maximality of Object}
 Assume that you have a shortest or longest walk,path and show that you can 
 get a contradiction by a constructing a shorter / longer path.
 
-\section{Induction}
-\paragraph{forward Induction}
+\paragraph{Assume the opposite and find contradiction}
+Lets assume for the sake of contradiction...
 
-\paragraph{multiple basescases}
+\paragraph{Induction}
+
+\paragraph{Induction with different cases after removing a vertex}
+If removign a leaf from a tree there can be multiple cases to be 
+considered depending on for example the new maximum degree
+
+\paragraph{Some parameter has specific value}
+try to show lower bound and upper bound by general example for all
+$ n \in \mathbb{N} $
 
 
-\section{List of important Graphs}
+\section{probabilistic method}
 
 
 \end{document}

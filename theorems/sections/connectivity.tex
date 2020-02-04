@@ -1,0 +1,62 @@
+\section{Connectivity}
+
+\paragraph{Definitions}
+\begin{itemize}
+    \item for a natural number $ k \geq 1 $, a graph $ G $ is called 
+    \textit{k-connected} if $ |V(G)| \geq k + 1 $ and for any set $ U $ of $ k - 1 $
+    vertices in $ G $ the graph $ G - U $ is connected. In particular $ K_n $ is
+    $(n-1)$-connected.
+    
+\end{itemize}
+
+\paragraph{Lemma 3.2} For any connected, non-trivial graph $ G $ we have
+$$ \kappa(G) \leq \kappa^\prime(G) \leq \delta(G) $$
+\begin{proof}
+    
+\end{proof}
+
+\paragraph{Theorem 3.3 (Menger's Theorem)} For any graph $ G $ and any two 
+vertex sets $ A,B \subseteq V(G) $, the smallest number of vertices separating 
+$ A $ and $ B $ is equal to the largest number of disjoint $A$-$B$-paths.
+
+\paragraph{Theorem 3.4 (Global Version of Menger's Theorem)} A graph $ G $ is 
+$k$-connected if and only if for any two vertices $ a,b $ in $ G $ there exist 
+$ k $ independent $a$-$b$-paths.
+
+
+\paragraph{Definition}
+\begin{itemize}
+    \item \textit{H-path}: Given a graph $ H $, we call a path $ P $ an $H-path$ 
+    if $ P $ is non-trivial and meets $ H $ exactly in its ends. Such a path is also 
+    called an $ ear $ of the graph $ H \cup P$.
+    \item An $ear$-$decomposition$ of a graph $ G $ is a sequence $ G_0 \subseteq 
+    G_1 \subseteq ... \subseteq G_k $ of graphs, such that 
+        \begin{itemize}
+            \item $G_0$ is a cycle
+            \item for each $ i = 1,...,k$ the graph $ G_i $ arises from $ G_{i-1}$
+            by adding a $ G_{i-1}$-path $P_i$, i.e. $P_i$ is an ear of $G_i$
+            \item $G_k = G$
+        \end{itemize} 
+\end{itemize}
+
+\paragraph{Theorem 25 (Ear-decomposition)} A graph $ G $ is 2-connected if and only 
+if it has an ear decomposition starting from any cycle of $ G$.
+
+\paragraph{Lemma 26} If $ G $ is 3-connected with $ G \neq K_4 $, then there exists 
+an edge $ e $ of $ G $ such that $ G \circ e $ is also 3-connected.
+
+\paragraph{Theorem 3.6 (Tutte)} A graph $ G $ is 3-connected if and only if there 
+exists a sequence of graphs $ G_0,G_1,...,G_k$, such that 
+\begin{itemize}
+    \item $G_0 = K_4$
+    \item for each $ i = 1,...,k$ the graph $ G_i $ has two adjacent vertices $ x^\prime, 
+    x^{\prime\prime} $ of degree at least 3, so that $ G_{i-1} = G_i \circ 
+    x^{prime}x^{\prime\prime} $
+    \item $ G_k = G$
+\end{itemize}
+
+\paragraph{Theorem 27 (Mader)} Every graph $ G = (V,E) $ of average degree at least $ 4k $
+has a $k$-connected subgraph.
+\begin{proof}
+    
+\end{proof}

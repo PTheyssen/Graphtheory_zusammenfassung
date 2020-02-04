@@ -1,0 +1,143 @@
+\section{Matchings}
+
+\paragraph{Definitions} 
+\begin{itemize}
+    \item \textit{matching} is a 1-regular graph, i.e. a matching is a graph $ M $ 
+    so that $ E(M) $ is a union of pairwise non-adjacent edges and $ 2|E(M)| = |V(M)|$
+
+    \item a matching in $ G $ is a subgraph of $ G $ isomorphic to a matching. We 
+    denote the size of the largest matching in $ G $ by $ \upsilon(G) $
+
+    \item a \textit{vertex cover} in $ G $ is a set of vertices $ U \subseteq V $ 
+    such that each edge in $ E $ is incident to at least one vertex in $ U $.
+    We denote the size of the smallest vertex cover in $ G $ by $ \tau(G) $
+
+    \item a \textit{k-factor of G} is a $k$-regular spanning subgraph of $ G$.
+
+    \item A \textit{1-factor of G} is also called a \textit{perfect matching} 
+    since it is a matching of largest possible size of order $ |V| $. Clearly
+    $ G $ can only contain a perfect matching if $ |V| $ is even.
+\end{itemize}
+
+\paragraph{Theorem 2.2} (Hall's Marriage Theorem) \\
+Let $ G $ be a bipartite graph with partite sets $ A $ and $ B$. Then $ G $ has 
+a matching containing all vertices of $ A $ if and only if 
+$ |N(S)| \geq |S| $ for all $ S \subseteq A$
+\begin{proof} $ $ \\
+   $\Rightarrow$: \\
+   If $ G $ has a matching $ M $ containing all vertices of $ A $, then for any 
+   $ S \subseteq A, N(S) $ in $ G $ is at least as large as $ N(S) $ in $ M $, 
+   thus $ |N(S)| \geq |S| $.
+
+   \smallskip \noindent
+   $\Leftarrow$: \\
+   We shall prove by induction on $ |A| $ that any bipartite graph with parts
+   $ A $ and $ B $ satisfying Hall's condition has a matching containing all 
+   vertices of $ A $, in other words, saturating $ A$.
+
+   \bigskip \noindent
+   When $ |A| = 1 $, there is at least one edge in $ G $ and thus a matching 
+   saturating $ A $. \\
+   Assume that the statement is true for all graphs $ G $ satisfying Hall's
+   condition and with $ |A| = k \geq 1 $. 
+   
+   \smallskip \noindent
+   Now consider a bipartite graph $ G $ with $ |A| = k + 1 $ and satisfying 
+   Hall's condition.
+
+   \bigskip \noindent
+   Case 1: $|N(S)| \geq |S| + 1 $ for any $ S \subsetneq A $. \\
+   Let $ G^\prime = G \{x,y\} $, for some edge xy. $ G^\prime $ has 
+   parts $ A^\prime = A - \{x\} $ and $ B^\prime = B - \{y\} $.
+   For any $ S \subseteq A^\prime $, $ |N_{G^\prime}(S^\prime)| \geq 
+   |N_G(S)| - 1 \geq |S| + 1 - 1 = |S| $. Thus $ G^\prime $ satisfies 
+   Hall's condition and by induction has a matching $ M^\prime $ saturating
+   $ A^\prime $. Then $ M = M^\prime \cup \{xy\} $ is a matching in 
+   $ G $ saturating $ A $.
+
+   \bigskip \noindent
+   Case 2: $|N(S_1)| = |S_1| $ for some $ S_1 \subsetneq A$. \\
+   Let $ A^\prime = S_1, B^\prime = N(A^\prime), G^\prime 
+   = G[A^\prime \cup B^\prime].$ Since $ |A^\prime| < |A|$, and 
+   $ G^\prime $ satisfies Hall's condition, $ G^\prime $ has a 
+   matching $ M^\prime $ saturating $ A^\prime $ by induction.
+   Now consider $ A^{\prime\prime} = A - A^\prime $, $ B^{\prime\prime} = B - B^\prime,$
+   $ G^{\prime\prime} = G[A^{\prime\prime} \cup B^{\prime\prime}] $.
+   We claim $ G^{\prime\prime} $ also satisfies Hall's condition.
+   Assume not, and there is $ S \subseteq A^{\prime\prime} $ such that 
+   $ |N_{G^\prime\prime}(S)| < |S|$. Then $ |N_G(S \cup A^\prime) = 
+   |B^\prime \cup N_{G^{\prime\prime}}(S)| = |B^\prime| + |N_{G^{\prime\prime}}(S)|
+   < |A^\prime| + |S| = |A^\prime \cup S|$, a contradiction to Hall's condition.
+   Thus there is a Matching $ M^{\prime\prime} $ in $ G^{\prime\prime} $ and 
+   $ M^\prime \cup M^{\prime\prime} $ is a matching saturating $ A $ in $ G $.
+\end{proof}
+
+\paragraph{Corollary 12} Let $ G $ be a bipartite graph with partite sets $ A $ and 
+$ B $ such that $ |N(S)| \geq |S| - d $ holds for all $ S \subseteq A$, and for a 
+fixed positive integer $ d$. Then $ G $ contains a matching of size at least 
+$ |A| - d$.
+\begin{proof}
+   TODO 
+\end{proof}
+
+\paragraph{Corollary 13} If $ G $ is a regular bipartite graph, it has a perfect 
+matching.
+\begin{proof}
+   Let $ k \in \mathbb{N} $ and let $ G $ be a $k$-regulat bipartite graph with 
+   parts $ A $ and $ B $. Then $ |E(G)| = k|A| = k|B|$, and thus $ |A| = |B|$.
+   Consider $ S \subseteq A $, let $ r $ be the number of edges between 
+   $ S $ and $ N(S)$. On one hand, $ r = |S|k $, on the other hand 
+   $ r \leq |N(S)|k$. Thus $ |N(S)| \geq |S| $ and by Hall's theorem there is a 
+   matching saturating $ A$. Since $ |A| = |B| $, it is a perfect matching.
+\end{proof}
+
+\paragraph{Corollary 14} A $k$-regular bipartite graph has a proper $k$-edge-coloring.
+\begin{proof}
+   % https://math.stackexchange.com/questions/83999/edge-coloring-of-a-k-regular-bipartite-graph
+   TODO
+\end{proof}
+
+\paragraph{Theorem 2.3} (K\H{o}nig's Theorem) \\
+Let $ G $ be bipartite. Then the size of a largset matching is the same as the 
+size of a smallest vertex cover.
+\begin{proof}
+   Let $ c $ be the vertex-cover number of $ G $ and $ m $ be the size of the 
+   largest matching of $ G$. Since a vertex cover should contain at least one 
+   vertex from each matching edge, $ c \geq m $. 
+
+   \smallskip \noindent
+   Now, we shall prove that $ c \leq m$. Let $ M $ be a largest matching in $ G $,
+   we need to show that $ c \leq |M|$. Let $ A $ and $ B $ be the partite sets of $ G$.
+   An \textit{alternating path} is a path that starts with a vertex in $ A $ not incident
+   to an edge of $ M $, and alternates between edges in $ M $ and edges in $ M$.
+   Note that an alternating path must end in a vertex saturated by $ M $, otherwise one 
+   can find a larger matching. Let 
+   $$ U^\prime = \{b: ab \in E(M) \text{ for some } a \in A 
+   \text{ and some alternating path ends in } b\} $$
+   $$ U = U^\prime \cup \{a: ab \in E(M), b \notin U^\prime\} $$
+   We see that $ |U| = m$. We shall show that $ U $ is a vertex cover, i.e. that every
+   edge of $ G $ contains a vertex from $ U$. Indeed, if $ ab \in E(M) $, then either 
+   $ a $ or $ b $ is in $ U $. If $ ab \notin E(M) $, we consider the following cases:
+
+   \bigskip \noindent
+   \textbf{Case 0:} $ a \in U $. We are done.
+
+   \smallskip \noindent
+   \textbf{Case 1:} $ a $ in not incident to $ M$. Then $ ab $ is an alternating path.
+   If $ b $ is also not incident to $ M $ then $ M \cup \{ab\} $ is a larger matching, 
+   a contradiction. Thus $ b $ is incident to $ M $ and then $ b \in U $.
+
+   \smallskip \noindent
+   \textbf{Case 2:} $ a $ is incident to $ M$. Then $ ab^\prime \in E(M) $ for some 
+   $ b^\prime$. Since $ a \notin U$, we have that $ b^\prime \in U$, thus there is 
+   an alternating path $ P $ ending in $ b^\prime$. If $ P $ contains $ b$, then 
+   $ b \in U$, otherwise $ Pb^{\prime}ab $ is an alternating path ending in  
+   $ b $, so $ b \in U$.
+
+\end{proof}
+
+\paragraph{Theorem 2.4} (Tutte's Theorem) \\
+A graph $ G $ has a perfect matching if and only if $ q(G - S) \leq |S| $ for all 
+$ S \subseteq V $. We define $ q(H) $ to be the number of odd components of $ H $,
+i.e. the number of connected components of $ H $ consisting of an odd number of 
+vertices.

@@ -1,0 +1,66 @@
+\section{Hamiltionian cycles}
+\paragraph{Definition}
+A cycle $ C $ in a graph $ G $ is Hamiltionian if it is spanning, if
+it contains all vertices. \\
+A graph that has a Ham. cycle is called Hamiltionian graph.
+
+\paragraph{Example}
+Every complete graph is Hamiltionian.
+
+\paragraph{History} Was introduced by Sir WIlliam Rovar Hamilton 
+in 1857. Introduced it via a game \enquote{Icosian game}.
+
+\smallskip 
+related is Traveling Salesperson problem
+
+\paragraph{Properties for Ham. Cycles}
+\begin{itemize}
+    \item extremal number not fit (to big??)
+    \item vertices of low degree
+    \item connectivity
+\end{itemize}
+
+\paragraph{Lemma 10.1 Neccessary cond. Ham. cycle)}
+\begin{proof}
+    Let $ C $ be a Hamiltionian cycle of $ G$.
+    Let $ S \subseteq V(G) $, $ S \neq \emptyset $, $ t := $ \# components of $ G - S $
+    There are at least 2 edges of $ C $ between each component of $ G - S $
+    and $ S$. If $ e = \#$ edges of $ C $ between $ S $ and $ V - S$, 
+    we have 
+    $$ e \geq t \cdot 2 \text{ and } e \underset{C is 2-\text{regular}}{\leq}
+    |S| \cdot 2 $$ 
+\end{proof}
+
+\paragraph{Ore's Thm.}
+A graph $ G $ on $ n \geq 3 $ vertices is Hamiltionian  
+$ \forall u,v \in V(G), uv \notin E(G), d(u)+d(v) \geq n $
+
+\paragraph{Kom\H{o}s-Sovkozy,Szemeredi} (generalization of Dirac) \\
+$ \delta(G) \geq \frac{k}{k+1} n$, then $ G $ has a $ k^{th} $
+power of a Hamiltionian cycle, that is a subgraph obtained from a Ham. cycle by 
+joining all vts at distance $ \leq k $ on the cycle by an edge.
+
+\paragraph{Csaba, Kühn, Osthus, Lu, Treglown 2014} (usage of regularity lemma) \\
+For sufficiently large $ n $, each d-regular graph with 
+$ d \geq \lfloor\frac{n}{2}\rfloor $ 
+has an edge-decomposition into Ham. cycles of at most one matching.
+
+\paragraph{Theorem 114} Every graph on $ n \geq 3 $ vts with 
+$ \alpha(G) \leq \kappa(G) $ is Hamiltionian.
+\begin{proof} (from Diestel) \\3
+    Let $ C $ be a longest cycle in $ G $, $ C = (v_0,v_1,...,v_{m-1},v_0)$.
+    If $ C $ is not Hamiltionian, $ \exists v \in V(G) \setminus V(C). $
+    Let $ F $ be a $C$-$v$-fan, i.e. $ F = \{P_i : P_i is a v_i-v-path, i \in I\} $
+    $ P_i$'s share only $ v $ pairwise. Moreover let $ F $ be of max. cadinality.
+    By Menger's thm $ |F| \leq min\{k,|C|\} $ We have
+     $ \forall i \in I, i+1 (\text{ mod }m) \notin I $. (otherwise $ C $ is not longest)
+     $ \forall i,j \in I, i \neq j: v_{i+1}v_{j+1} \notin E(G) $
+     
+\end{proof}
+
+\paragraph{Planarity and Hamiltonicity}
+Example: $ G $ is planar, cubic $ \kappa(G) = 3 $ and not Hamiltionian.
+
+\bigskip
+Example with 42 vertices \\
+\includegraphics[scale=0.3]{resources/planeNoHam.png} 
