@@ -5,10 +5,10 @@
 \usepackage[autostyle=true,german=quotes]{csquotes}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{oldgerm}
 
-\renewcommand{\labelenumi}{(\roman{enumi})}
 \title{Graphtheory Proof Techniques}
 \author{Klaus Philipp Theyssen}
 
@@ -18,41 +18,125 @@
 \end{center}
 
 
-\section{General Problem Solving, Testprep}
+\paragraph{General Problem Solving, Testprep}
 \begin{enumerate}
+    \item draw alot of \textbf{figures} to stimulate thinking and discovering patterns,
+    but keep in mind that they could be misleading
     \item Look at small examples 
     \item what similar problems theorems do I know what is different
     \item take a step back and dont get fixiated on the first idea and try 
-        a completly different way of looking at the problem
+    a completly different way of looking at the problem
     \item start with the most difficult problems
     \item work on a problem as long as I can make progress, if I do not know
-        how to continue switch to another problem
+    how to continue switch to another problem
     \item see solution in big picture, \enquote{does this make sense?}
     \item relax while taking test, focus on breathing 
     \item see test as sports event to show of all the hard work in the past
 \end{enumerate}
 
+\section{Graph invariants, properties and their relations}
+\begin{itemize}
+    \item bipartite
+    \item density, amount of edges 
+    \item forest, tree 
+    \item girth (length of shortest cycle), circumference (longest cycle)
+    \item diameter (longest shortest path),
+    radius (shortest longest shortest path, considering all vertices)
+    \item $d$-degenerate, degeneracy
+    \item vertex degrees (min, max, average)
+    \item $k$-factor
+    \item structural implication (subgraphs), cycles, triangles 
+    \item smallest vertex cover
+    \item largest matching
+    \item clique number $ \omega(G)$ 
+    \item co-clique number $ \alpha(G) $
+    \item perfect graph
+    \item independent sets
+    \item connectivity $ \kappa(G) $
+    \item edge-connectivity $ \kappa^\prime(G) $
+    \item planarity 
+    \item outerplanar
+    \item minor, topologiacl minor
+    \item chroamtic number $ \chi(X) $
+    \item critical chroamtic number
+    \item item edge-chroamtic number $ \chi^\prime(G) $
+    \item list-coloring number
+    \item extremal number
+    \item zarankiewicz function
+    \item Ramsey number 
+    \item property of graphs: almost always, threshold functions
+    \item hamiltonian cycles 
+\end{itemize}
 
-\section{Basics}
-\paragraph{Minimality/Maximality of Object}
-Assume that you have a shortest or longest walk,path and show that you can 
-get a contradiction by a constructing a shorter / longer path.
-
-\paragraph{Assume the opposite and find contradiction}
-Lets assume for the sake of contradiction...
-
-\paragraph{Induction}
-
-\paragraph{Induction with different cases after removing a vertex}
-If removign a leaf from a tree there can be multiple cases to be 
-considered depending on for example the new maximum degree
-
-\paragraph{Some parameter has specific value}
-try to show lower bound and upper bound by general example for all
-$ n \in \mathbb{N} $
 
 
-\section{probabilistic method}
+\section{Proof Techniques}
+\paragraph{1. Induction}
 
+\paragraph{2. Extremal principle, with Contradiction}
+\begin{itemize}
+    \item Consider a longest path ...
+\end{itemize}
 
+\paragraph{3. Counting Arguments}
+\begin{itemize}
+    \item Double Counting, Example:
+        \begin{itemize}
+            \item $ ex(n,K_{t,t}) \leq c \cdot n^{2 - \frac{1}{t}} $ (skript Theorem 67) 
+        \end{itemize}
+    \item Pigeonhole Principle
+    \item Parity Arguments (even vs. odd)
+\end{itemize}
+
+\paragraph{4. Algorithmic, Iterative (\enquote{Just do it})}
+
+\paragraph{5. \enquote{Dichotomy}, Ramsey}
+Either a red coloring has a structure we want or if not then this implies some 
+structural information about the blue coloring.
+\paragraph{6. Probabilistic Method}
+\begin{itemize}
+    \item $\mathbb{P}$($\bigcup$\enquote{Bad Event}$) < 1$, therefore the Probablity 
+    that none of these Bad Events happen is greater than 0, this simple fact often
+    allows to show that some object with desired \enquote{good} properties exists.
+
+    \item Conputing $ \mathbb{E} X$ (using linearity of $\mathbb{E}$), Example: 
+        \begin{itemize}
+            \item Computing the expected number of $k$-cycles in 
+            $ G \in \mathcal{G}(n,p)$ 
+        \end{itemize}
+
+    \item Alterations (random Object has some unwanted structure, simply destroy it 
+    by removing edge etc.), Example:
+        \begin{itemize}
+            \item $ ex(n,K_{t,t}) \geq c\cdot n^{2 - \frac{1}{t+1}} $ (skript Theorem 69)
+        \end{itemize}
+
+\end{itemize}
+
+\paragraph{7. Apply a Theorem!}  $ $ \\ 
+Most used:
+    \begin{itemize}
+        \item Regularity Lemma, graph removal, triangle removal
+        \item Fit Ramsey number onto a Problem
+        \item Eulers Formula (plane graphs)
+        \item Menger's Theorem 
+        \item Hall's Condition 
+        \item K\H{o}nigs Theorem
+    \end{itemize}
 \end{document}
+
+\paragraph{8. Define Auxiliary Graph} $ $ \\
+Examples:
+\begin{itemize}
+    \item For Hall's condition (Problem 8) 
+\end{itemize}
+
+\paragraph{Exam topics}
+\begin{enumerate}
+    \item Tree problem, argue only with basic properties, degree sequence, sequences
+    \item plane graphs: determine edges, triangles, faces bounden by cycle etc.
+    \item list chroamtic number 
+    \item computing Turan graph  
+    \item prove for almost all graphs (asymptotic behaviour)
+    \item True, False Statements: know important theorems
+\end{enumerate}

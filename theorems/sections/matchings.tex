@@ -140,4 +140,23 @@ size of a smallest vertex cover.
 A graph $ G $ has a perfect matching if and only if $ q(G - S) \leq |S| $ for all 
 $ S \subseteq V $. We define $ q(H) $ to be the number of odd components of $ H $,
 i.e. the number of connected components of $ H $ consisting of an odd number of 
-vertices.
+vertices. 
+\begin{proof} $ $ \\
+   $\Rightarrow$: \\
+   Assume first that $ G $ has a perfect matching $ M $. Consider a set $ S $ of vertices
+   and an odd component $ G^\prime $ of $ G - S $. We see that there is at least one 
+   vertex in $ G^\prime $ that is incident to an edge of $ M $ that has another endpoint 
+   not in $ G^\prime $. This endpoint must be in $ S$. Thus $ |S| $ is at least as large as 
+   the number of odd components. 
+   
+   $\Leftarrow$: \\ 
+   Now, assume that $ q(G - S) \leq |S| $ for all $ S \subseteq V$. Assume that $ G $ 
+   has no perfect matching and $ |V(G)| = n $. Note that $|V(G)|$ is even (it follows from 
+   the assumption $ q(G - S) \leq |S|) $ applied to $ S = \emptyset$). Let $ G^\prime$
+   be constructed from $ G $ by adding missing edges as long as no perfect matching appears.
+   Let $ S $ be a set of vertices of degree $ n - 1$. Note that it could be empty.
+
+   \bigskip \noindent
+   \textbf{Claim 1:} Each component of $ G^\prime - S $ is complete. Assume not, 
+   there is a component 
+\end{proof}

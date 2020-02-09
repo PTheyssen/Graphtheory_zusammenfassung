@@ -1,0 +1,149 @@
+\documentclass[a4paper]{article}
+\usepackage[german,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[autostyle=true,german=quotes]{csquotes}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{oldgerm}
+
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
+\title{}
+\author{Klaus Philipp Theyssen}
+
+\begin{document}
+\begin{center}
+    \Large Overview Graphtheory       
+\end{center}
+
+\section{Basics}    
+\begin{itemize}
+    \item Definitions: hypercube $ Q_n$, Euler Tour, connected component, 
+    tree, forest, $d$-degenerate, edge contracting, girth, diameter, radius,
+    minimum maximum average degree, subgraph, induced subgraph, bipartite,
+    independent set, walk, closed walk, $A$-$B$-path, independent path,
+    proper edge colouring (chromatic index $ \chi^\prime(G))$,
+    proper vertex coloring $ \chi(G)$
+
+    \item Handshake Lemma
+    \item Proposition: Bipartite iff no odd cycle 
+    \item Eulerian Tour Condition
+    \item Tree Equivalences
+\end{itemize}
+
+
+\section{Matchings}
+\begin{itemize}
+    \item Definitions: matching, vertexcover, k-factor, 1-factor 
+    (perfect matching), $f$-factor $H$-factor
+
+    \item Halls's Marriage Theorem
+    \item K\H{o}nigs Theorem
+    \item Tutte's theorem
+\end{itemize}
+
+
+\section{Connectivity}
+\begin{itemize}
+    \item Definitions: $k$-connected, $\kappa(G)$, $k$-linked, cut set, 
+    cut vertex, cut edge, bridge, $l$-edge-connected, $\kappa^\prime(G)$,
+    block, block-cut-vertex graph
+
+    \item $\kappa(G) \leq \kappa^\prime(G) \leq \delta(G) $
+    \item Menger's Theorem 
+    \item Global Version of Menger's Theorem
+    \item Line graph, Beineke Theorem: Forbidden induced subgraphs of a line graph
+    \item ear-decomposition
+    \item Tutte: 3-connected graph from $ K_4$
+    \item Mader theorem: average degree $ \geq 4k \Rightarrow$ $k$-connected subgraph
+\end{itemize}
+
+
+\section{Plane Graphs}                                           
+\begin{itemize}
+    \item Definitions: faces, outer face, inner face, boundary of face,
+    maximally plane, plane triangulation, planar embedding, planar graph,
+    outerplanar, Minor, subdivision, topological minor
+
+    \item Plane triangulation Theorem
+    \item Euler's Formula 
+    \item upperbound for edges for plane graphs $(3n - 6)$
+    \item upperbound edges triangle free plane graph $(2n - 4)$
+    \item Kuratowski's Theorem 
+    \item 5-Color Theorem
+    \item 5-List-Color Theorem
+\end{itemize}
+
+
+\section{Coloring}                                               
+\begin{itemize}
+    \item Definitions: clique number $\omega(G)$, co-clique number $\alpha(G)$,
+    perfect graph (for each induced subgraph $H$: $\chi(G) = \omega(G)$)
+    \item Greedy estimate for the chromatic number  
+    \item Brook's Theorem 
+    \item simple coloring results
+    \item Mycielski's Construction
+    \item Tutte's Construction
+    \item (K\H{o}nig 1916) $ G $ bipartite with maximum degree $\Delta$ then $\chi^\prime(G) = \Delta$
+    \item Vizing's Theorem
+\end{itemize}
+
+
+\section{Extremal Graphtheory}                                   
+\begin{itemize}
+    \item Definitions: extremal number ex($n$,$H$), EX($n$,$H$), Turan graph,
+    complete $r$-partite graph, density $d(X,Y)$, $\epsilon$-regular pair,
+    $\epsilon$-regular partition
+
+    \item Mantel's theorem
+    \item Turan's theorem
+    \item (Erd\H{o}s-Stone-Simonovits)
+    \item Zarankiewicz function
+    \item K\H{o}vari-Sos-Turan Theorem
+    \item Szemeredis's Regularity Lemma
+    \item Erd\H{o}s-Stone Theorem
+\end{itemize}
+
+
+\section{Ramsey theory}                                          
+\begin{itemize}
+    \item Definitions: Ramsey number, asymmetric Ramsey, graph Ramsey,
+    hypergraph Ramsey, induced Ramsey, anti-Ramsey
+
+    \item Ramsey Theorem
+    \item Applications of Ramsey theory
+    \item Cvatal-Rödl-Szemeredi-Trotter
+\end{itemize}
+
+
+\section{Random Graphs}                                          
+\begin{itemize}
+    \item Definitions: Erd\H{o}s-Renyi model, property, threshold function,
+    probabilistic method, 
+
+    \item  expected number of cycled of length $k$
+    \item Erd\H{o}s: $R(k,k) \geq 2^{k/2}$
+    \item Erd\H{o}s-Hajnal: For any integer $ k \geq 3 $ there is a graph 
+    with girth greater than $ k $ and chromatic number greater than $ k $.
+\end{itemize}
+
+
+\section{Hamiltonian Cycle}                                      
+\begin{itemize}
+    \item Definitions: Hamilton cycle
+    \item Necessary condition for existence 
+    \item Dirac Theorem
+\end{itemize}
+
+
+\section{Flows}                                                  
+\begin{itemize}
+    \item Definitions: network, source, sink, capacity, network flow, cut, 
+    capacity of cut
+
+    \item Ford-Fulkerson Theorem
+\end{itemize}
+                                                                 
+\end{document}
