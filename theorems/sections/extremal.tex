@@ -24,7 +24,7 @@ Two categories of questions:
     $K_{r+1}$, we denote $||T_r(n)||$ by $t_r(n)$
 \end{itemize}
 
-\paragraph{Calculating Turan Number}
+\paragraph{Calculating Turan Number} $ $\\
 The Turan number $t_r(n)$ is calculated as follows:\\
 Let $n = pr + s$ where $ p $ and $ s $ are integers, and 
 $ 0 \leq s < r $, then $ T_r(n) $ has $ s $ parts of size $p + 1$
@@ -85,20 +85,7 @@ $$ \lim_{n\to\infty} \frac{t_r(n)}{\binom{n}{2}} = 1 - \frac{1}{r}$$
 
 \paragraph{Theorem 62 (Mantel's theorem)} If a graph $ G $ on n vertices contains 
 no triangle then it contains at most $ \frac{n^2}{4} $ edges.
-\begin{proof} First proof: \\
-    Suppose that $ G $ has $ m $ edges. Let $ x $ and $ y $ be two vertices 
-    in $ G $ which are joined by an edge. We see that $ d(x) + d(y) \leq n $, because 
-    every vertex in the graph $ G $ is connected to at most one of $ x $ and $ y $. 
-    Note now that 
-    $$ \sum_x d^2(x) = \sum_{xy\in E} (d(x) + d(y)) \leq mn $$
-    On the other hand, since $ \sum_{x} d(x) = 2m$, the Cauchy-Schwarz 
-    inequality implies that 
-    $$ \sum_x d^2(x) \geq \frac{(\sum_x d(x))^2}{n} \geq \frac{4m^2}{n} $$
-    Therefore
-    $$ \frac{4m^2}{n} \leq mn $$ 
-    an the result follows.
-\end{proof}
-\begin{proof} Second proof: \\
+\begin{proof} 
     We proceed by induction on $ n $. For $ n = 1 $ and $ n = 2$. The result 
     is trivial, so assume that $ n > 2 $ and we know it to be true for $ n - 1$.
     Let $ G $ be a graph on $ n $ vertices. Let $ x $ and $ y $ be two adjacent vertices
@@ -114,7 +101,7 @@ no triangle then it contains at most $ \frac{n^2}{4} $ edges.
 any graph $ G $ with $ n $ vertices, ex$(n,K_r)$ edges and $ K_r \nsubseteq G $ 
 is a $ T_{r-1}(n) $. In other words EX$(n,K_r) = \{T_{r-1}(n)\}$.
 \begin{proof}
-        
+       {\color{red}{TODO}}
 \end{proof}
 
 \paragraph{Conjecture Erd\H{o}s-Sos} If $ |G| = n$ and $||G|| > \frac{(k-1)n}{2}$
@@ -126,6 +113,16 @@ fixed $ \epsilon > 0 $ there is $ n_0 $ such that for any $ n \geq n_0 $:
 $$ (1 - \frac{1}{\chi(H)-1} - \epsilon)\binom{n}{2} \leq ex(n,H) \leq
 (1 - \frac{1}{\chi(H)-1}+\epsilon) \binom{n}{2} $$
 
+\paragraph{Corollary}
+\begin{itemize}
+    \item $\chi(H) = 3$, ex$(n,H) \approx \frac{1}{2}\binom{n}{2}$
+    \item $\chi(H) \geq 3$, ex$(n,H) \approx$ ex$(n,K_{\chi(H)})$
+\end{itemize}
+
+\noindent
+{\color{red}{For exam, find extremal number for an ugly big graph,\\ by applying 
+Erd\H{o}s-Stone}}
+
 \smallskip \noindent
 \textit{Proof outline:} Let $ r = \chi(H) - 1 $ \\
 For the upper bound, let $ G $ be a graph on $ n $ vertices that has 
@@ -133,7 +130,7 @@ $ (1 - \frac{1}{\chi(H) - 1} + \epsilon) \binom{n}{2} $ edges. We shall show
 that $ G $ has a subgraph isomorphic to $ H $. Let $ G^\prime $ be a large 
 subgraph of $ G $ that has minimum degree at least 
 $ (1 - \frac{1}{r} + \frac{\epsilon}{2}) |V(G^\prime)|$, we can finde such 
-$ G\prime $ by greedily deleting vertices of smaller degrees. Then show, 
+$ G^\prime $ by greedily deleting vertices of smaller degrees. Then show, 
 by induction on $ r $ that $ G^\prime $ contains a complete $(r+1)$-partite 
 graph $ H^\prime $ with sufficiently large parts. Finally observe that 
 $ H \subseteq H^\prime $
@@ -165,6 +162,12 @@ $$  z(m,n;s,t) \leq c_1 \cdot n \cdot n^{1-\frac{1}{t}} + c_2 \cdot n
     \smallskip TODO
 \end{proof}
 
+\paragraph{Hadwiger's Conjecture}
+$$  \chi(G) \geq r \Rightarrow G \text{ has  a } K_r \text{ minor}$$
+\begin{proof}
+    {\color{red}{proof cases $r = 3$ and $r = 4$ for exam}}
+\end{proof}
+
 \paragraph{Lemma 68} For any positive integers $ n,t $ with $ t < n$, 
 $$ ex(n,K_{t,t}) \leq \frac{z(n,n;t,t)}{2} $$
 
@@ -175,7 +178,7 @@ $$ c^\prime \cdot n^{2 -\frac{2}{t+1}} \leq ex(n,K_{t,t}) \leq c \cdot n^{2 - \f
 \paragraph{Theorem 71} 
 $$ ex(n,C_4) = \frac{1}{2}n^{3/2} + \mathcal{o}(n^{3/2}) $$ 
 $$ ex(n,C_6) = \Theta(n^{4/3}) $$
-$$ ex(n,C_10) = \Theta(n^{6/5}) $$ 
+$$ ex(n,C_{10}) = \Theta(n^{6/5}) $$ 
 $$ c^\prime \cdot n^{1-\frac{2}{3k-2-\epsilon}} \leq 
 ex(n,C_{2k}) \leq c \cdot n^{1 + \frac{1}{k}} $$ 
 
@@ -225,6 +228,15 @@ integer $ m \geq 1 $ there is an $ M \in \mathbb{N} $ such that every graph
 of order at least $ m $ has an $\epsilon$-regular partition 
 $V_0 \cupdot...\cupdot V_k$ with $ m\leq k \leq M $.
 
+\paragraph{Analyzing large Graphs with regularity Lemma}
+\begin{enumerate}
+    \item start with $\epsilon$-partition
+    \item create auxillary graph with an edge between parts 
+    if $(V_i,V_j) \epsilon$-regular with density $d > 0$
+    \item use blowup graph to complete partite, use blowup lemma:
+    $$ H \subseteq R_s \Rightarrow H \subseteq G $$
+\end{enumerate}
+
 \paragraph{Erdos-Stone Theorem} For all integers $ r > s \geq 1 $ and any 
 $ \epsilon > 0 $ there exists an integer $ n_0 $ such that every graph with 
 $n \geq n_0$ vertices and at least
@@ -237,4 +249,9 @@ $ \lim_{n\to\infty} / \binom{n}{2} = 1 - 1 / r $ yields an asymptotic formula
 for the extremal number of any graph $ H $ on at least one edge:
 $$ lim_{n\to\infty} \frac{ex(n,H)}{\binom{n}{2}} = \frac{\chi(H)-2}{\chi(H)-1} $$
 
-
+\paragraph{Substructures in sparse Graphs}
+\textbf{Key message:} extremal numbers for minors are linear in $|E|$
+\begin{itemize}
+    \item $||G|| \geq cr^2|G| \Rightarrow G \supseteq \text{TK}_r $
+    \item $||G|| \geq c\sqrt{log(r)} \Rightarrow G \supseteq \text{MK}_r $
+\end{itemize}

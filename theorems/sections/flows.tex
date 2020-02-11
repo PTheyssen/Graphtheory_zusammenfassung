@@ -1,1 +1,47 @@
 \section{Networkflows}
+
+\paragraph{Definitions}
+\begin{itemize}
+    \item circulation
+    \item network, source, sink, capacity
+\end{itemize}
+
+\paragraph{Definition Network Flow} $ $
+
+\smallskip \noindent
+\textbf{(F1)} 
+
+\smallskip \noindent
+\textbf{(F2)}
+
+\smallskip \noindent
+\textbf{(F3)}
+
+\begin{itemize}
+    \item cut
+    \item capacity of a cut
+\end{itemize}
+
+\paragraph{Lemma 100} For any cut $(S,\overline{S})$
+and a network flow $f$ in a network $N$, 
+$f(S,\overline{S})$ = $f(s,V(G))$
+\begin{proof}
+  $$
+  f(S,\overline{S}) = f(S,V) - f(S,S) = f(s,V)
+  + \underbrace{\sum_{v\in S\setminus\{s\}} f(v,V)}_{0 \text{ by } F2} \\
+  - \underbrace{f(S,S)}_{0 \text{ by } F1}
+  = f(s,V) + 0 - 0  
+  $$
+\end{proof}
+
+\paragraph{Ford-Fulkerson Theorem} 
+Let $N = (G,s,t,c)$ be a network. Then 
+$$ max\{|f|: f \text{ is an } N\text{-flow}\} = 
+\text{min}\{c(S,\overline{S}): (S,\overline{S}) \text{ is a cut}\}$$
+and there is an integral flow $f: T \to \mathbb{Z}_{\geq0}$
+with this maximum flow value.
+\begin{proof}
+    {\color{red}{TODO}}
+\end{proof}
+
+\paragraph{No Group-valued flows!!}

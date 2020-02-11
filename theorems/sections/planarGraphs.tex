@@ -1,42 +1,34 @@
 \section{Planar graphs}
 
+\paragraph{planar graph vs. plane graph}
+Plane Graph is topological object $ (V,E), V \subseteq \mathbb{R}^2$, 
+$ e \in E $ are arcs in $ \mathbb{R}^2$.
+Planar graph is combinatorial object $ (V,E), E \subseteq \binom{n}{2} $ s.t. 
+it has a plane graph realization (planar embedding)
+
+\paragraph{Definition outerplanar}
+A graph $ G $ is $outerplanar$ if it has a plane embedding such that the
+boundary of the outer face contains all vertices $ V $.
+
+
 \paragraph{Theorem 32 (Plane triangulation)} A graph of order at least 3 is 
 maximally plane if and only if it is a plane triangulation.
 \begin{proof}
-    
+    {\color{red}{TODO}}    
 \end{proof}
 
 \paragraph{Theorem 4.2 (Euler's Formula)} Let $ G $ be a connected plane graph 
 with $ n $ vertices, $ m $ edges and $ l $ faces. Then 
 $$ n - m + l = 2 $$
-
-\smallskip \noindent
-\textbf{Intuition:} Eulers Thm for counting faces, edges and vertices of a 
-polyhedron, and then projecting them into the plane gives us a plane graph 
-(see Weitz video)
 \begin{proof}
-    
+    {\color{red}{TODO}}    
 \end{proof}
 
 \paragraph{Corollary 33} A plane graph with $ n \geq 3 $ vertices has at most 
 $ 3n - 6 $ edges. Every plane triangulation has exactly $ 3n - 6 $ edges.
 \begin{proof}
-
+    {\color{red}{TODO}}   
 \end{proof}
-
-\paragraph{Lemma 37} A graph $ G $ contains $ K_5 $ or $ K_{3,3} $ iff 
-$ G $ contains $ K_5 $ or $ K_{3,3} $, as topological minor.
-\begin{proof}
-    
-\end{proof}
-
-\paragraph{Lemma 38} Let $ G $ be a 3-connected graph, $ MK_5 \nsubseteq G $ and 
-$ MK_{3,3} \nsubseteq G $. Then $ G $ is planar.
-\begin{proof}
-    
-\end{proof}
-
-\paragraph{Lemma 39}
 
 \paragraph{Theorem 4.4 (Kuratowski's Theorem)} The following statements are 
 equivalent for graphs $ G$:
@@ -45,22 +37,30 @@ equivalent for graphs $ G$:
     \item $ G $ does not have $ K_5 $ or $ K_{3,3} $ as minors
     \item $ G $ does not have $ K_5 $ or $ K_{3,3} $ as topological minors
 \end{enumerate}
-\begin{proof}
-    TODO
-\end{proof}
-
-\paragraph{Definition} Poset
-
-
-\paragraph{Theorem 41 (Schnyder)} Let $ G $ be a graph and $ P $ be its incidence
-poset. Then $ G $ is planar if and only if dim($P$) $\leq$ 3.
 
 \paragraph{Theorem 4.7 (5-Color Theorem)} Every planar graph is 5-colorabel
 \begin{proof}
-    
+     {\color{red}{TODO}}   
 \end{proof}
 
 \paragraph{Definition} List coloring
+\begin{itemize}
+    \item Let $L(v) \subseteq \mathbb{N}$ be a list of colors for each vertex 
+    $v \in V$. We say that $ G $ is $L$-$list$-$colorable$ if there is a coloring
+    $c: V \to \mathbb{N}$ such that $c(v) \in L(v)$ for each $v \in V$ and 
+    adjacent vertices receive different colors. 
+    \item Let $k \in \mathbb{N}$. We say that $G$ is $k$-$list$-$colorable$ or 
+    $k$-$choosable$ if $G$ is $L$-list-colorable for each list $L$ with 
+    $|L(v)| = k$ for all $v \in V$
+    \item the $choosability$, denoted by ch$(G)$ is the smallest $k$ such that
+    $G$ is $k$-choosable.
+    \item the $edge$ $choosability$, denoted by $\text{ch}^\prime(G)$ is the 
+    smallest $k$ such that $G$ is $L$-edge-list-colorable for each list
+    $L$ with $|L(e)| = k$ for $e \in E$
+\end{itemize}
 
 \paragraph{Theorem 4.10 (5-List-Color Theorem)} Let $ G $ be a planar graph.
 Then the list chromatic number of $ G $ is at most 5.
+\begin{proof}
+    {\color{red}{TODO}}
+\end{proof}

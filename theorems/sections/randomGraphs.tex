@@ -1,29 +1,63 @@
 \section{Random Graphs}
-Example: $ n = 4 $ and $ p = \frac{1}{3} $
-\\
-empty graph has prob $ = \frac{2}{3}^6 $
+\paragraph{Definitions}
+\begin{itemize}
+    \item Erdos-Renyi model of random graphs $\mathcal{G}(n,p)$ is the 
+    probability space on all $n$-vertex graphs that results from 
+    independently deciding whether to include each of the $\binom{n}{2}$
+    possible edges with fixed probability $p \in [0,1]$    
 
-\smallskip
-graph with 2 edges has prob $ \frac{1}{3}^2 \cdot \frac{2}{3}^4 $
+    \item A property $\mathcal{P}$ is a set of graphs, for example 
+    $\mathcal{P} = \{G: G \text{ is } k\text{-connected}\}$
 
-\paragraph{Note}
-let m be number of edges in G
-$$ \sum_{G graph on [n]} Prob(G) = \sum_{m=0}^{\binom{n}{2}} \binom{\binom{n}{2}}{m}
-\cdot p^m (1-p)^{\binom{n}{2}-m} = (p + (1 -p)^{\binom{n}{2}}) = 1 $$
+    \item Let $(p_n) \in [0,1]^{\mathbb{N}}$ be a sequence.
+    We say that $G \in \mathcal{G}(n,p_n)$ $almost$ $always$ has a property
+    $\mathcal{P}$ if Prob$(G \in \mathcal{G}(n,p_n) \cap \mathcal{P}) \to 1$
+    for $n \to \infty$. If $(p_n)$ is constant $p$, we also say in this case
+    that $almost$ $all$ graphs in $\mathcal{G}(n,p)$ have property
+    $\mathcal{P}$
 
-\smallskip
+    \item A function $f(n): \mathbb{N} \to [0,1]$ is  a 
+    \textit{threshold function} for property $\mathcal{P}$ if:
+        \begin{itemize}
+            \item for all $(p_n) \in [0,1]^{\mathbb{N}}$ with 
+            $$\frac{p_n}{f(n)} \underset{n\to\infty}{\rightarrow} 0$$ the graph 
+            $G \in \mathcal{G}(n,p_n)$ almost always does not have property 
+            $\mathcal{P}$
+
+            \item for all $(p_n) \in [0,1]^{\mathbb{N}}$ with 
+            $$\frac{p_n}{f(n)} \underset{n\to\infty}{\rightarrow} \infty$$ the graph 
+            $G \in \mathcal{G}(n,p_n)$ almost always has property 
+            $\mathcal{P}$
+
+            \item threshold function for containing a cycle is $f(n) = 1/n$
+            meaning if $p > 1/n$ we almost always have a cycle
+
+        \end{itemize}
+\end{itemize}
+
+\paragraph{Usage of probabilistic Method}
+\begin{itemize}
+    \item ex$(n,K_{t,t})$
+    \item $\sqrt{2}^k \leq R(k)$
+    \item Erd\H{o}s-Hajnal
+\end{itemize}
+
+\paragraph{Lemma 107} Ed\H{o}s-Renyi model is universal
+{\color{red}{TODO}}
 Lemma 107 tells us that Erdos-Renyi model is universal, it gives us any graph.
 
-\smallskip
-The type of estimats of lemma 108 are used in many different results.
+\paragraph{Lemma 108}
+{\color{red}{TODO}}
 
-\smallskip
-Lemma 109: count cycle of $ k $ vertices overcounting for k in also in different order 
-therefore divide by $ 2k $ and times $ p^k $ because we have $ k $ edges in our cycle
+\paragraph{Lemma 110} Expected number of cycles \\
+{\color{red}{TODO}}
 
-\smallskip
-purpose: for this lemma, to prove ramsey result, but the main purpose is the result
-of erdos-Hajnal (thm 9.3) that graph with arbitrarily high girth (no cycle of length smaller ) and abitrarily high chromatic number.
+\paragraph{Theorem 9.2 (Erd\H{o}s)} 
+For any $k \geq 2$ there is a Graph $G$ on $\sqrt{2}^k$ vertices such that 
+$\alpha(G) < k$ and $\omega(G) < k$. This implies $R(k,k) \geq 2^{k/2}$.
+\begin{proof}
+    {\color{red}{TODO}}   
+\end{proof}
 
 
 \paragraph{Theorem 9.3 (Erdos-Hajnal)} 
@@ -33,21 +67,10 @@ of $ G^\prime $ > $ k $.
 We know chromatic number of G prime is $ \geq \frac{|V(G^\prime)|}{\alpha(G^\prime)} $
 with lemma 108 we can show $ \alpha $ is not so big and therefore get a lower bound
 
-\smallskip
-two tricks: 
+\smallskip \noindent
+\textbf{two tricks:} 
 \begin{itemize}
     \item random graph and kill short cycle 
     \item bound the independence number (co-clique number) size of the largest 
     independent set
 \end{itemize}
-
-\bigskip 
-papers on probablistic method are not easy to read, because it involves choosing the 
-parameters correctly and asymptotic analysis. But the results obtained by 
-probablistic mehtod cannot be obtained by any other method.
-
-\paragraph{Graph Properties and threshold functions}
-\textit{graphproperty} is a set of graphs. 
- Example: $$\textit{P} = \{G: \text{ G is connected}\}  $$
-
- 

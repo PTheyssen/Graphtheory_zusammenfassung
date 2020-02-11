@@ -1,10 +1,76 @@
-\section{Ramseytheory}
-\paragraph{Lecture 27.1.20}
+\section{Ramsey Theory}
 
-\paragraph{Theorem 7.4} 
-For any positive integer $ \Delta $ there exists a 
-$ c \in \mathbb{N} $ such that 
+\paragraph{Definitions}
+\begin{itemize}
+    \item In an edge-coloring of a graph, a set of edges is 
+        \begin{itemize}
+            \item $monochromatic$ if all edges have the same color
+            \item $rainbow$ if no two edges have the same color
+            \item $lexical$ if two edges have the same color iff
+            they have the same lower endpoint in some ordering of 
+            the vertices 
+        \end{itemize}
 
-\paragraph{Choonbu Lee 2015}
-For every positive $ d $ $ \exists c = c(d) \forall H $
-H-d-degenerate $ R(H) \leq c|V(H)| $
+    \item Let $k$ be a natural number. Then the \textit{Ramsey number}
+    $R(k) \in \mathbb{N}$ is the smallest $n$ such that every 
+    2-edge-coloring of $K_n$ contains a monochromatic $K_k$.
+
+    \item \textbf{asymmetric Ramsey number $R(k,l)$:} is the smallest $n\in\mathbb{N}$
+    such that every 2-edge-coloring of a $K_n$ contains a red $K_k$
+    or a blue $K_l$. 
+
+    \item \textbf{graph Ramsey number $R(G,H)$:} is the smallest $n\in\mathbb{N}$
+    such that every red-blue edge-coloring of $K_n$ contains a red $G$
+    or a blue $H$.
+
+    \item \textbf{hypergraph Ramsey number $R_r(l_1,...,l_k)$:} is the smallest 
+    $n\in\mathbb{N}$ such that every $k$-coloring of the edges of the 
+    complete hypergraph on $n$ vertices and edges of size $r$ contains 
+    a clique of size $l_i$ whose edges all have color $i$, for some 
+    $ i \in \{1,...,k\}$.
+
+    \item \textbf{induced Ramsey number $IR(G,H)$:} is the smallest $n \in \mathbb{N}$
+    for which there is a graph $F$ on $n$ vertices such that in any red-blue coloring
+    of $E(F)$, there is an induced subgraph of $F$ isomorphic to $G$ with all 
+    its edgs colored red or there is an induced subgraph of $F$ isomorphic to 
+    $H$ with all its edges colored blue.
+
+    \item \textbf{anti-Ramsey number $AR(n,H)$:} is the maximum number of colors
+    that an edge-coloring of $K_n$ can have without containing a rainbow copy 
+    of $H$.
+\end{itemize}
+
+
+\paragraph{Ramsey Theorem} For any $k \in \mathbb{N}$ we have 
+$$ \sqrt{2}^k \leq R(k) \leq 4^k $$ 
+In particular the Ramsey numbers, the asymmetric Ramsey numbers an the graph 
+Ramsey numbers are finite.
+\begin{proof}
+    {\color{red}{TODO}}
+\end{proof}
+
+\paragraph{Remark}
+$R(2) = 2, R(3) = 6, R(4) = 18$ and $43 \leq R(5) \leq 48$.
+
+\paragraph{Applications of Ramsey theory}
+
+\paragraph{Theorem (Erd\H{o}s, Szekeres)} Any list of more than $n^2$ numbers 
+contains a nondecreasing or non-increasing sublist of more than $n$ numbers.
+\begin{proof}
+    {\color{red}{TODO}}
+\end{proof}
+
+\paragraph{Theorem (Erd\H{o}s, Szekeres)} For any integer $m \geq 3$ there is 
+an integer $N = N(m)$ such that if $X$ is a set of $N$ points on the plane 
+such that no three points are on a line, then $X$ contains a vertex set of a convex 
+$m$-gon.
+\begin{proof}
+    {\color{red}{TODO}}
+\end{proof}
+
+\paragraph{Definition}
+Let $R(p,q;r)$ be the hypergraph Ramsey number for $r$-uniform hypergraphs.
+The following Theorem show the existence of hypergraph Ramsey number.
+
+\paragraph{Theorem 83} For any parametres $p,q,r \geq 2$
+$$ R(p,q;r) \leq R(R(p-1,q;r), R(p,q-1;r);r-1) + 1 $$ 

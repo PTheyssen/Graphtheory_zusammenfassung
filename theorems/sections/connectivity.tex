@@ -6,14 +6,46 @@
     \textit{k-connected} if $ |V(G)| \geq k + 1 $ and for any set $ U $ of $ k - 1 $
     vertices in $ G $ the graph $ G - U $ is connected. In particular $ K_n $ is
     $(n-1)$-connected.
+
+    \smallskip \noindent
+    this implies: a graph is $k$-connected if any two of its vertices 
+    can be joined by $k$ independent paths
+
+    \item a graph $ G $ is called $k$-$linked$ if $ |G| \geq 2k $ and for any $ 2k $ 
+    distinct vertices $s_1,...,s_k,t_1,...,t_k$ there are vertex disjoint 
+    $s_i$-$t_i$-paths, $i = 1,...,k$
     
 \end{itemize}
 
 \paragraph{Lemma 3.2} For any connected, non-trivial graph $ G $ we have
 $$ \kappa(G) \leq \kappa^\prime(G) \leq \delta(G) $$
 \begin{proof}
-    
+   If $ G $ is complete $\kappa(G) = \kappa^\prime(G) = \delta(G) = n - 1$ 
+
+   \smallskip
+   Assume $ G $ is not complete: \\
+   $ \kappa^\prime(G) \leq \delta(G) $: \\
+   Simply remove all the edges of a vertex with minimum degree.
+
+   \smallskip
+   $ \kappa(G) \leq \kappa^\prime(G)$: \\
+   Consider smallest separating set of edges $ F $:
+
+   \smallskip \noindent
+   case1: \\
+   there is a vertex $ v $ not incident to $ F $, then the vertices incident
+   to $ F $ separate this vertex from any vertex in the other component.
+
+
+   \smallskip \noindent
+   case2: \\
+   Every vertex is incident to $ F $, consider $ v $ of degree $ < |G| - 1 $, 
+   exists because $ G $ is not complete. Show the neighbourhood of $ v $ 
+   is less than $ |F| $ so $ N(v) $ is a separating set.
 \end{proof}
+
+\paragraph{Definition} A subset $ X $ of vertices and edges of $ G $ seperates
+two vertex sets $ A,B $ if each $A$-$B$-path (starts in $ A $ ends in $B$) contains an element of $X$.
 
 \paragraph{Theorem 3.3 (Menger's Theorem)} For any graph $ G $ and any two 
 vertex sets $ A,B \subseteq V(G) $, the smallest number of vertices separating 
@@ -22,6 +54,20 @@ $ A $ and $ B $ is equal to the largest number of disjoint $A$-$B$-paths.
 \paragraph{Theorem 3.4 (Global Version of Menger's Theorem)} A graph $ G $ is 
 $k$-connected if and only if for any two vertices $ a,b $ in $ G $ there exist 
 $ k $ independent $a$-$b$-paths.
+
+\smallskip \noindent
+Note that Menger's Theorem implies that if $ G $ is $k$-linked, then $ G $ 
+is $k$-connected.
+
+\paragraph{Definition: Line Graph} For a graph $ G = (V,E) $ the line graph
+$L(G)$ is the graph $L(G) = (E,E^\prime) $ where
+$$ E^\prime = \{\{e_1,e_2\} \in \binom{E}{2}: e_1 
+\text{ adjacent to } e_2 \text{ in } G\} $$
+
+\paragraph{Corollary 24} If $a,b$ are vertices of $ G$, then
+\begin{center}
+    min \#edges separating $ a $ and $ b $ = max \#edge-disjoint $a$-$b$-paths
+\end{center}
 
 
 \paragraph{Definition}
@@ -41,9 +87,15 @@ $ k $ independent $a$-$b$-paths.
 
 \paragraph{Theorem 25 (Ear-decomposition)} A graph $ G $ is 2-connected if and only 
 if it has an ear decomposition starting from any cycle of $ G$.
+\begin{proof}
+{\color{red}{TODO}}
+\end{proof}
 
 \paragraph{Lemma 26} If $ G $ is 3-connected with $ G \neq K_4 $, then there exists 
 an edge $ e $ of $ G $ such that $ G \circ e $ is also 3-connected.
+\begin{proof}
+ {\color{red}{TODO}}
+\end{proof}
 
 \paragraph{Theorem 3.6 (Tutte)} A graph $ G $ is 3-connected if and only if there 
 exists a sequence of graphs $ G_0,G_1,...,G_k$, such that 
@@ -54,9 +106,26 @@ exists a sequence of graphs $ G_0,G_1,...,G_k$, such that
     x^{prime}x^{\prime\prime} $
     \item $ G_k = G$
 \end{itemize}
+\begin{proof}
+  {\color{red}{TODO}}
+\end{proof}
 
 \paragraph{Theorem 27 (Mader)} Every graph $ G = (V,E) $ of average degree at least $ 4k $
 has a $k$-connected subgraph.
 \begin{proof}
     
 \end{proof}
+
+\paragraph{Definition}
+\begin{itemize}
+    \item let $ G $ be a graph, a maximal connected subgraph of $ G $ without a 
+    cut vertex is called a $block$ of $ G$. In particular, the blocks of $ G $ 
+    are exactly the bridges and the maximal 2-connected subgraphs of $ G$.
+    \item \textit{block-cut-vertex graph or block graph} of $ G $ is a bipartite
+    graph $ H $ whose partite sets are the $blocks$ of $ G $ and the cute vertices
+    of $ G $ respectively. There is an edge between a block $ B $ and a cut vertex 
+    $ a $ if and only if $ a \in B $, i.e. the block contains the cut vertex. The 
+    leaves of this graph are called $leaf$ $blocks$.
+\end{itemize}
+
+\paragraph{Theorem 28} The block-cut-vertex graph of a connected graph is a tree.
