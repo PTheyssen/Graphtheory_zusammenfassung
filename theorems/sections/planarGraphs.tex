@@ -6,28 +6,88 @@ $ e \in E $ are arcs in $ \mathbb{R}^2$.
 Planar graph is combinatorial object $ (V,E), E \subseteq \binom{n}{2} $ s.t. 
 it has a plane graph realization (planar embedding)
 
-\paragraph{Definition outerplanar}
-A graph $ G $ is $outerplanar$ if it has a plane embedding such that the
-boundary of the outer face contains all vertices $ V $.
+\paragraph{Definitions}
+\begin{itemize}
+    \item For any plane graph $G$, the set $\mathbb{R}^2 \setminus G$ is open,
+    its regions are the \textit{faces} of $G$.
+
+    \item the face of $G$ corresponding to the unbounded region is the 
+    \textit{outer face} of $G$, the other faces are its \textit{inner faces}.
+    The set of all Faces is denoted by $F(G)$
+
+    \item The \textit{frontier} of a set $X \subseteq \mathbb{R}^2$ is the set 
+    $Y$ of all points $y \in \mathbb{R}^2$ such that every neighbourhood of $y$
+    meets both $X$ and $\mathbb{R}^2 \setminus X$. Note that if $X$ is closed, 
+    its frontier lies in $X$, while if $X$ is open, its frontier lies in 
+    $\mathbb{R}^2 \setminus X$.
+
+    \item The subgraph of $G$ whose point set is the frontier of a face $f$
+    is said to $bound$ $f$ and is called its $boundary$, we denote it by $G[f]$
+
+    \item Let $G$ be a plane graph. If one cannot add an edge to form plane 
+    $ G^\prime \supset G$ with $V(G^\prime) = V(G)$, then $G$ is called 
+    $maximally$ $plane$.
+
+    \item If every face in $F(G)$ (including the outer face) is bounded by a 
+    triangle in $G$, then $G$ is called a $plane$ $triangulation$
+
+    \item A $planar$ $embedding$ of an abstract graph $G = (V,E)$ is a bijective
+    mapping $f: V \to V^\prime$, where $G^\prime = (V^\prime, E^\prime)$ is a plane 
+    graph and $uv \in E(G)$, then there is an edge in $E^\prime$ with endpoints
+    $f(u)$ and $f(v)$. We say that $G^\prime$ is a $drawing$ of $G$.
+    A graph $G = (V,E)$ is $planar$ if it has a planar embedding.
+
+    \item A graph $ G $ is $outerplanar$ if it has a plane embedding such that the
+    boundary of the outer face contains all vertices $ V $.
+
+\end{itemize}
 
 
 \paragraph{Theorem 32 (Plane triangulation)} A graph of order at least 3 is 
 maximally plane if and only if it is a plane triangulation.
 \begin{proof}
-    {\color{red}{TODO}}    
+    If $G$ is a plane triangulation, then each face is bounded by a triangle. 
+    If an edge is added to $G$ so that the resulting graph is plane, the interior
+    of the edge must be in some face $f$ of $G$. The endpoints of the added edge
+    must be two of the three vertices on the frontier of $f$. However, these
+    vertices already are endpoints of an edge of $G$, a contradiction. Thus 
+    no edge could be added to $G$ so that the graph remains plane.
+
+    \bigskip
+    Now assume that $G$ is maximally plane.
+    Let $f$ be a face and $H = G[f]$. Then we see that $H$ is a complete graph,
+    otherwise we could add a new edge with interior in $f$. If $H$ has at 
+    least 4 vertices $v_1,v_2,v_3,v_4,...$ then we see that $v_i$-$v_j$-paths,
+    $i,j \in [4]$ can not all be pairwise disjoint. If $H$ has at most $2$ 
+    vertices, then $f$ is a face having at most one edge on its boundary,
+    thus $f = \mathbb{R}^2 - G$ and one can add another edge to $G$.
+    Therefore, we see that $H$ is a complete graph on 3 vertices.
 \end{proof}
 
 \paragraph{Theorem 4.2 (Euler's Formula)} Let $ G $ be a connected plane graph 
 with $ n $ vertices, $ m $ edges and $ l $ faces. Then 
 $$ n - m + l = 2 $$
 \begin{proof}
-    {\color{red}{TODO}}    
+    Apply induction on $m$. A connected graph has at least $n-1$ edge.
+    If $m = n-1$, $G$ is a tree. Then $l=1$ and $n - (n-1) + 1 = 2$
+    
+    \smallskip \noindent
+    Let $m \geq n$ and assume the claim holds for smaller values of $m$.
+    Then there is an edge $e$ on a cycle. Then $e$ is on the boundary
+    of exactly two faces $f_1$ and $f_2$, these make a become one face 
+    in $G^\prime := G - e$, by induction the claim holds.
 \end{proof}
 
 \paragraph{Corollary 33} A plane graph with $ n \geq 3 $ vertices has at most 
 $ 3n - 6 $ edges. Every plane triangulation has exactly $ 3n - 6 $ edges.
 \begin{proof}
-    {\color{red}{TODO}}   
+    Count the number of edges for every face and plug into Euler's formula.
+\end{proof}
+
+\paragraph{Corollary 34} A triangle-free plane graph with $n \geq 3$ vertices 
+has at most $2n -4$ edges
+\begin{proof}
+    Double count the set of pairs of edges with faces and use eulers formula.
 \end{proof}
 
 \paragraph{Theorem 4.4 (Kuratowski's Theorem)} The following statements are 
@@ -38,10 +98,46 @@ equivalent for graphs $ G$:
     \item $ G $ does not have $ K_5 $ or $ K_{3,3} $ as topological minors
 \end{enumerate}
 
-\paragraph{Theorem 4.7 (5-Color Theorem)} Every planar graph is 5-colorabel
+\paragraph{Definitions: Poset}
+\begin{itemize}
+    \item  Let $X$ be a set and $\leq \subseteq X^2$ be a relation on $X$.
+    Then $\leq$ is a \textit{partial order} if it is reflexive, 
+    antisymmetric and transitive. A partial order is $total$ if 
+    $x \leq y$ or $y \leq x$ for every $x,y \in X$
+
+    \item The \textit{poset dimension} of $(X, \leq)$ is the smallest number 
+    $d$ such that there are total orders $R_1,...,R_d$ on $X$ with
+    $\leq = R_1 \cap ... \cap R_d$.
+
+    \item The \textit{incidence poset} $(V \cup E, \leq)$ on a graph 
+    $G = (V,E)$ is given by $v \leq e$ iff $e$ is incident to $v$ for 
+    all $v \in V$ and $e \in E$
+\end{itemize}
+
+\paragraph{Theorem (Schnyder)} Let $G$ be a graph and $P$ its incidence poset.
+Then $G$ is planar iff dim($P$)$\leq 3$.
+
+\paragraph{Theorem 4.7 (5-Color Theorem)} Every planar graph is 5-colorable
 \begin{proof}
-     {\color{red}{TODO}}   
+    We shall apply induction on $|V(G)|$ with a trivial basis when 
+    $|V(G)| \leq 5$. Assume $|V(G)| > 5$, assume further that $G$ is maximally
+    planar (plane triangulation). By Euler's Formula there is a vertex $v$
+    of degree at most 5. By induction, there is a proper coloring $c$ of 
+    $G - v$ in at most 5 colors. If $c$ assigns at most 4 colors to $N(v)$,
+    we can assign $v$ a color such that we use only 5.
+    Otherwise, assume $v_1,..,v_5$, $c(v_i) = i$ and $v_i$'s are cyclically arranged on the face of 
+    $G-v$. We make a color switch from 1 to 3 at vertex $v_1$, if this is valid 
+    and now both $v_1$ and $v_3$ have the same color 3, then $v$ can get 
+    color 1. Otherwise there has to be a $v_1$-$v_3$-path colored in 1 and 3.
+    Similary there is a $v_2$-$v_4$-path colored 2 and 4, but these paths 
+    have to intersect at a single vertex, so that graph is still planar. But 
+    this vertex cannot lie on both path since the sets of available colors are 
+    disjoint.
 \end{proof}
+
+\paragraph{Wrong proof of Four Color Theorem by Kempe}
+Uses contradiction from 2 colored path which intersect, but there is an 
+example which shows that we have two vertices of the same color.
 
 \paragraph{Definition} List coloring
 \begin{itemize}
@@ -62,5 +158,43 @@ equivalent for graphs $ G$:
 \paragraph{Theorem 4.10 (5-List-Color Theorem)} Let $ G $ be a planar graph.
 Then the list chromatic number of $ G $ is at most 5.
 \begin{proof}
-    {\color{red}{TODO}}
+    We prove a stronger statement $(\star)$: \\
+    Let $G$ be an outer triangulation (triangular inner faces and an 
+    outer face forming a cycle) Suppose two adjacent vertices $x,y$
+    on the boundary of the outer face have already been colored. 
+    For all other vertices on the cycle have list of length 3 and 
+    all other vertices on bounded faces have list of length 5. Then 
+    the coloring of $x,y$ can be extended to a coloring of $G$ from 
+    the given lists.
+
+    \bigskip \noindent
+    We prove $(\star)$ by induction on $|V(G)|$, with trivial basis $|V(G)| =3$
+    Consider an outer triangulation on more than 3 vertices.
+
+    \smallskip \noindent
+    Case 1: There is a chord \\
+    Then $G = G_1 \cup G_2$, such that $\{u,v\} = V(G_1) \cap V(G_2)$, 
+    $|G| > |G_i| \geq 3$, $G_i$ is an outer triangulation, $i = 1,2$. Without 
+    loss of generality $x,y$ are on the outer face of $G_1$. Apply induction 
+    to $G_1$ to obtain a proper $L$-coloring $c^\prime$ of $G_1$. Next apply
+    induction to $G_2$ with $u$ and $v$ playing the role of $x,y$ and 
+    list assignments $L'$ such that they have the same color as in $c'$.
+    Then there is a proper $L'$-coloring $c''$ of $G_2$. Since these colorings
+    have the same colors for $u$ and $v$ they form together a  proper coloring
+    of $G$.
+
+    \smallskip \noindent
+    Case 2: There is no chord \\
+    Let $z$ be a neighbor of $x$ on the boundary of the outer face, $z \neq y$.
+    Let $Z$ be the set of neighbors of $z$ not on the outer face. Let 
+    $L(x) = \{a\}$, $L(y) = \{b\}$. Let $c,d \in L(z)$ such that 
+    $c \neq a$ and $d\neq a$. Remove $z$ from $G$, $G' := G -z$.
+    Let $L'$ be the list assignment for $V(G')$ such that 
+    $L(v) = \{c,d\}$ for $v \in Z$ and $L'(v) = L(v)$ for $v \notin Z$.
+    Remove the colors $c,d$ from the vertices in the neighbourhood of $z$. 
+    and leave the colors for all other vertices the same. By induction $G'$
+    has a proper $L'$-coloring $c'$. We shall extend a coloring $c'$ to 
+    a coloring $c$ of $G$. Simply by giving $z$ the color $c, d$ depending on
+    the color of his neighbor on the outer face. 
+
 \end{proof}

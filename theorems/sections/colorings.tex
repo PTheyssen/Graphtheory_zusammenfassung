@@ -31,11 +31,46 @@ $ \Delta + 1$
 
 \paragraph{Definitions}
 \begin{itemize}
-    \item $clique$ $number$ $\omega(G)$ of $G$ is the largest order of a clique in $G$
-    \item $co$-$clique$ $number$ $\alpha(G)$ of $G$ is the largest order of an independent set in $G$
+    \item $clique$ $number$ $\omega(G)$ of $G$ is the largest 
+    order of a clique in $G$
+
+    \item $co$-$clique$ $number$ $\alpha(G)$ of $G$ is the largest order of an 
+    independent set in $G$
+
     \item  Graph is \textit{perfect} if $\chi(H) = \omega(H)$ for each induced
-    subgraph $H$ of $G$. For example bipartite graphs are perfect with $\chi=\omega=2$
+    subgraph $H$ of $G$. For example bipartite graphs are perfect with
+    $\chi=\omega=2$
 \end{itemize}
+
+\paragraph{Lemma 43} For any connected graph $G$ and for any vertex $v$ there
+is an ordering of the vertices of $G: v_1,...,v_n$ such that $v=v_n$ and 
+for each $i, 1 \leq i < n$, $v_i$ has a higher indexed neighbor.
+\begin{proof}
+    Consider a spanning tree $T$ of $G$ and create a sequence of sets 
+    $X_1,...,X_{n-1}$ with $X_1 = V(G_1), X_i = X_{i-1} - \{v_{i-1}\}$, where
+    $v_i$ is a leaf of $T[X_i]$ not equal to $v$, for $i = 1,...,n -1$.
+    Then $v_1,...,v_n$ is a desired ordering with $v_n = v$
+\end{proof}
+
+\paragraph{Lemma 45} Let $G$ be a 2-connected non-complete graph of minimum
+degree at least 3. Then there are vertices $x,y$ and $v$ such that 
+$xy \notin E(G), xv,yv \in E(G)$ and $G-\{x,y\}$ is connected.
+\begin{proof}
+Consider a vertex $w$ of degree at most $|G|-2$
+
+\smallskip \noindent
+Case 1: $G-w$ has no cutvertices. \\
+Let $x = w$ and $y$ be a vertex at distance 2 from $x$ and let $v$ be a 
+common neighbor of $x$ and $y$. Since $y$ is not a cut-vertex in $G-x$, 
+$G-\{x,y\}$ is connected.
+
+\smallskip \noindent
+Case 2: $G-w$ has a cutvertex. \\
+In this case, let $v=w$. Then $v$ must be adjacent to non-cutvertex members of 
+each leaf-block of $G-v$. Let $x$ and $y$ be such neighbors in distinct 
+leaf-blocks. Since $v$ has another neighbor besides $x$ and $y$, 
+$G-\{x,y\}$ is connected.
+\end{proof}
 
 \paragraph{Lemma 46 (Simple Coloring Results)} $ $ \\
 For any graph $G$ the following hold: 
@@ -45,10 +80,13 @@ For any graph $G$ the following hold:
     \sqrt{2||G||+1/4}$
 \end{itemize}
 
-\paragraph{Greedy coloring algorithm}
-\begin{proof}
-     {\color{red}{TODO}}
-\end{proof}
+\paragraph{Greedy coloring algorithm} $ $ \\
+starting from a fixed vertex enumeration $v_1,...,v_n$ of $G$, we consider the 
+vertices in turn and color each $v_i$ with the first available color, meaning 
+with the smallest positive integer not already used to color any neighbour of 
+$v_i$ among $v_1,...,v_{i-1}$. In this way we never use more than $\Delta(G) +1$
+colors, even for unfavourable choices of the enumeration. If $G$ is complete or 
+an odd cycle, then this is even best possible.
 
 \paragraph{Lovasz Perfect Graph Theorem}
 A graph $G$ is perfect if and only if its complement $\overline{G}$ is perfect.
@@ -60,8 +98,8 @@ or the complement of an odd hole as an induced subgraph.
 \paragraph{Graphs with $\omega(G) \leq \chi(G)$ exist}
 Meaning $ \exists G: \omega << \chi(G)$, we have 3 proofs 
 \begin{itemize}
-    \item Mycielski's construction: {\color{red}{TODO}}
-    \item Tutte's construction: {\color{red}{TODO}}
+    \item Mycielski's construction 
+    \item Tutte's construction
     \item Erd\H{o}s-Hajnal theorem: girth greater than $k$ and chromatic 
     number greater than $k$
 \end{itemize}
@@ -69,25 +107,239 @@ Meaning $ \exists G: \omega << \chi(G)$, we have 3 proofs
 \paragraph{Theorem 5.1 (Brook's Theorem)} Let $ G $ be a connected graph.
 Then $ \chi(G) \leq \Delta(G) $ unless $G$ is a complete graph or and odd cycle.
 \begin{proof}
-    {\color{red}{TODO}}
+Induction on $|V(G)| = n$. The theorem holds for any graph on at most 3
+vertices. Assume $|V(G)| > 3$, we have two cases:
+
+\bigskip \noindent
+case 1: $G$ has a cut-vertex $v$ \\
+If $G$ has a cut-vertex $v$, we can apply induction to the graphs $G_1$ and 
+$G_2$ such that $G_1 \cup G_2 = G$ and $V(G_1) \cap V(G_2) = \{v\}$ and 
+$|G_1| < |G|$ and $|G_2| < G$. By I.H. we get that even if $G_1$ and 
+$G_2$ are complete or an odd cycle $\chi{G_i} \leq \Delta(G_i) \leq 
+\Delta(G)$ we can make sure that the color of $v$ is the same in both 
+colorings and still get $\chi(G) \leq \Delta(G)$.
+
+\smallskip \noindent
+If $\Delta(G) \leq 2$ then $G$ is a path or a cycle and the theorem holds.
+Assume $\Delta(G) \geq 3$
+
+\bigskip \noindent
+case 2: $G$ is 2-connected.
+
+\smallskip \noindent
+case 2.1: There is a vertex $v$ of degree at most $\Delta -1$ \\
+We shall order the vertices of $G$ $v_1,...,v_n$ such that $v = v_n$ and 
+each $v_i, i<n$ has a neighbor with larger index, such an ordering exists 
+by Lemma 43. Color $G$ greedily with respect to this ordering. We see at 
+step $i$, there are at most $\Delta -1$ neighbors of $v_i$ that has been 
+colored, so there is an available color for $v_i$
+
+\smallskip \noindent
+case 2.2: All vertices of $G$ have degree $\Delta$ \\
+Consider vertices $x,y,v$ guaranteed by Lemma 45, such that $xy \notin E(G)$ 
+and $xv,yv \in E(G)$ and $G-\{x,y\}$ is connected. Order the vertices 
+of $G$ as $v_1,...,v_n$ such that $v_1 = x, v_2 = y, v_n = v$ for each 
+$v_i, 3 \leq i < n$ there is a neighbor of $v_i$ with a higher index, such 
+an ordering exists by Lemma 43. Color $G$ greedily according to this ordering. 
+We see that $v_1$ and $v_2$ get the same color as in the previous case, at 
+step $i, 3 \leq i < n$, $v_i$ has at most $\Delta -1$ colored neighbors so it 
+could be colored with a remaining color. At the last step, we see that $v_n$
+has $\Delta$ colored neighbors, but two of them $v_1$ and $v_2$ have the same 
+color so there are at most $\Delta -1$ colors used by the neighbors of $v_n$.
+Thus $v_n$ can be colored with a remaining color.
 \end{proof}
+
+\paragraph{Graphs with arbitrarily high chromatic number}
+\paragraph{Mycielski's Construction} We can construct a family 
+$(G_k = (V_k,E_k))_{k\in\mathbb{N}}$ of triangle-free graphs with 
+$\chi(G_k) = k$ as follows:
+\begin{itemize}
+    \item $G_1$ is the single-vertex graph, $G_2$ is the single-edge $K_2$
+
+    \item $V_{k+1} := V_k \cup U \cup \{w\}$ where 
+    $V_k \cap (U \cup \{w\}) = \emptyset, V_k = \{v_1,...,v_n\}$ and 
+    $U = \{u_1,...,u_n\}$
+
+    \item $E_{k+1} := E_k \cup \{wu_i : i=1,...,k\} \cup 
+    \bigcup^n_{i=1} \{u_iv: v \in N_{G_k}(v_i)\}$
+\end{itemize}
+
+\paragraph{Lemma} For any $k \geq 1$, Miycielsk's graph $G_k$ has chromatic 
+number $k$. Moreover, $G_k$ is triangle-free.
+\begin{proof}
+    We shall prove this statement by induction on $k$ with trivial basis $k=1$.
+    Assume $k \geq 2$ and $\chi(G_{k-1} = k-1$ and $G_{k-1}$ is triangle-free.
+
+    \bigskip
+    First we show that $\chi(G_k) = k$: \\
+    We see that $\chi(G) \leq k$ by considering a proper coloring $c$ of 
+    $G_{k-1}$ with colors from $[k-1]$ and letting $c': V_k \to [k]$ such
+    that every $u_i$ gets the same color as $v_i$ and the vertex $w$ gets 
+    the new color $k$.\\
+    Now assume that $\chi(G_k) < k$. Let $c$ be a proper coloring of $G_k$ with
+    colors from $[k-1]$. Derive contradiction if $\chi(G_k) = k-1$ by coloring
+    $w$ with color $k-1$ and the vertices from $U_{k-1}$ are colored using 
+    $k-2$ colors, but then the vertices in $V_{k-1}$ could also be colored
+    from $[k-2]$.
+
+    \bigskip
+    To see that $G_k$ has no triangle, observe that a triangle could only have 
+    one vertex in $u_i \in U_{k-1}$ and two vertices in $v_j,v_m \in V_{k-1}$.
+    Then $v_i,v_j,v_m$ form a triangle in $G_{k-1}$ a contradiction.
+\end{proof}
+
+\paragraph{Tutte's Construction}
+We can construct a family $(G_k)_{k\in\mathbb{N}}$ of triangle-free graphs 
+with $\chi(G_k) = k$ as follows: $G_1$ is the single-vertex graph. To get 
+from $G_k$ to $G_{k+1}$, take an independent set $U$ of size 
+$k(|G_k| -1) +1$ and $\binom{|U|}{|G_k|}$ vertex-disjoint copies of $G_k$. 
+For each subset of size $|G_k|$ in $U$ then introduce a perfect matching to 
+exactly one of the copies of $G_k$.
+
+\paragraph{Lemma} For any $k$, Tutte's graph $G_k$ has chromatic number $k$ and
+it is triangle-free.
+\begin{proof}
+    We argue by induction on $k$ with trivial basis $k=1$. We see that 
+    $\chi(G_k) \leq \chi(G_{k_1})+1$ because we can assign the same set of 
+    $\chi(G_{k-1})$ colors to each copy of $G_{k-1}$ and a new color to $U$.
+    Assume that $\chi(G_k) \leq \chi(G_{k-1})$. Consider a coloring of $G_k$
+    with $\chi(G_{k-1})$ colors. By pigeonhole principle there is a set $U'$
+    of $|G_{k-1}|$ vertices in $U$ of the same color, say 1. The vertices of 
+    $U'$ are matched to a copy $G'$ of $G_{k-1}$. Then $G'$ does not use color 
+    1 on its vertices and thus colored with less than $\chi(G_{k-1})$ colors.
+    Therefore there are two adjacent vertices of the same color. So, any 
+    proper coloring of $G_k$ uses more than $\chi(G_{k-1})$ colors.
+
+    \bigskip
+    To see that $G_k$ has no triangles, observe that any two adjacent edges 
+    incident to $U$ have endpoints in distinct copies of $G_{k-1}$, thus are 
+    not part of any triangle.
+\end{proof}
+
 
 \paragraph{Theorem 54 (K\H{o}nig, 1916)} If $ G $ is a bipartite graph
 with maximum degree $\Delta$ then $\chi^\prime(G) = \Delta$.
 \begin{proof}
-    {\color{red}{TODO}}
+    We see, that $\chi'(G) \geq \Delta$ because the edges incident to a vertex
+    of maximum degree require distinct colors in a proper edge-coloring. 
+
+    \bigskip
+    To prove that $\chi'(G) \leq \Delta$ we use induction on $||G||$ with 
+    a basis $||G|| =1$. Let $G$ be given, $||G|| \geq 2$ and assume 
+    that the statement is true for any graph on at most $||G||-1$ edges.
+    Let $e=xy \in E(G)$. By induction, there is a proper edge coloring $c$
+    of $G' = G-e$ using $\Delta$ colors.
+
+    \smallskip
+    In $G'$ both $x$ and $y$ are incident to at most $\Delta-1$ edges. Thus
+    there are non-empty color sets $Mis(y), Mis(y) \subseteq [\Delta]$, which
+    are the colors that are not used on edges incident to $x$ or $y$.
+    If $Mis(x) \cap Mis(y) \neq \emptyset$, color $e$ with 
+    $\alpha \in Mis(x) \cap Mis(y)$. This gives $\chi'(G) \leq \Delta$.
+
+    \smallskip
+    If $Mis(x) \cap Mis(y) = \emptyset$, let $a \in Mis(x)$ and $b \in Mis(y)$,
+    consider the longest path $P$ colored $a$ and $b$ starting at $x$. Because
+    of parity, $P$ does not end in $y$, and because $y$ is not incident to 
+    $b$, $y$ is not a vertex on $P$. Switch colors $a$ and $b$ on $P$. 
+    Then we obtain a proper edge-coloring in which $b \in Mis(x) \cap Mis(y)$,
+    which allows $e$ to be colored $b$. Thus $\chi'(G) \leq \Delta$.
 \end{proof}
+Proof sketch: induction: remove an edge, apply IH if the vertices incident to 
+the edge have same color available then put back the edge and color it with it.
+If they have different ones then consider longest path (alternating between
+the available colors) starting in one of the 
+vts, and switch colors of that one. So the vertices have the same color 
+available, now put back the edge and color it with that color.
 
 \paragraph{Theorem 5.4 (Vizing's Theorem)}
 For any graph $ G $ with maximum degree $\Delta$
 $$ \Delta \leq \chi^\prime(G) \leq \Delta + 1 $$
 \begin{proof}
-    {\color{red}{TODO}}
+    proof sketch: 
+    \begin{itemize}
+        \item lower bound: because of vertex of maximum degree
+
+        \item upper bound: induction on number of edges
+
+        \item \textbf{Assume that $G$ has no proper edge-coloring with 
+        max degree + 1 colors}
+
+        \item introduce claim that when removing an edge we have 
+        a path between the incident vertices in the two colors that are
+        available at them 
+
+        \item proof the claim with contradiction (we could switch colors and 
+        obtain coloring with less colors)
+
+        \item get contradiction using claim and creating multiple Paths, this
+        means $G$ has a proper edge-coloring with $\Delta +1$
+    \end{itemize}
+
+
+    \bigskip
+    The lower bound holds because the edges incident to a vertex of maximum
+    degree require distinct colors in a proper edge-coloring. For the upper 
+    bound use induction on $||G||$ with the trivial basis $||G|| = 1$. Let 
+    $G$ be a graph, $||G|| > 1$, assume that the assertion holds for all 
+    graphs with smaller number of edges. For any edge-coloring $c$ of a 
+    subgraph $H$ of $G$ with colors $[\Delta+1]$.
+    Assume now that $G$ has no proper edge-coloring with $\Delta+1$ colors.
+
+    \smallskip
+    \textbf{Claim} For any $e = xy \in E(G)$, for any proper coloring $c$ of 
+    $G-e$ from $[\Delta +1]$, for any $\alpha \in Mis_c(x)$ and any 
+    $\beta \in Mis_c(y)$, there is an $x$-$y$-path colored $\alpha$ and $\beta$.
+
+    \smallskip
+    We see that $Mis_c \neq \emptyset$ for any $v$. If $Mis_c(x) \cap Mis_c(y)
+    \neq \emptyset$, let $\alpha \in Mis_c(x) \cap Mis_c(y)$. Color $xy$ with
+    $\alpha$, this gives a proper coloring of $G$ with at most $\Delta +1$ 
+    colors, a contradiction. 
+
+    \smallskip 
+    If $Mis_c(x) \cap Mis_c(y) = \emptyset$, let $\alpha \in Mis_c(x), \beta
+    \in Mis_c(y), \alpha \neq \beta$. If there is a maximal path $P$ colored
+    $\alpha$ and $\beta$ that contains $x$ and does not contain $y$, switch the 
+    colors $\alpha$ and $\beta$ in $P$ and color $xy$ with $\beta$. This gives
+    a proper coloring of $G$ with at most $\Delta+1$ colors, a contradiction,
+    this proves the claim.
+
+    \bigskip
+    Let $xy_0 \in E(G)$. Let $c_0$ be a proper coloring of $G_0 := G - xy_0$
+    from $[\Delta + 1]$. Let $\alpha \in Mis_{c_0}(x)$. Let $y_0,y_1,...,y_k$
+    be a maximal sequence of distinct neighbors of $x$ such that 
+    $c_0(xy_{i+1}) \in Mis_{c_0}(y_i), 0 \leq i < k$.
+
+    \bigskip
+    Let $c_i$ be a coloring of $G_i = G-xy_i$ such that 
+
+    $$c_i(xy_j) = 
+        \begin{cases}
+            c_0(xy_{j+1}), \text{ for } j \in \{0,...,i-1\} \\
+            c_0(e), \text{ otherwise}
+        \end{cases}
+    $$
+    Note that $Mis_{c_i}(x) = Mis_{c_j}(x)$ for all $i,j \in \{0,...,k\}$.
+
+    \smallskip
+    Let $\beta \in Mis_{c_0}(y_k)$. Let $y = y_i$ be a vertex so that 
+    $c_0(yx) = \beta$. Such a vertex exists, otherwise either 
+    $\beta \in Mis_{c_k}(y_k) \cap Mis_{c_k}(x)$ contradicting Claim, or the 
+    sequence $y_0,...,y_k$ can be extenden, contradicting its maximality.
+
+    \smallskip
+    Then $G_k$ has an $\alpha$-$\beta$ path $P$ with endpoints $y_{i-1},y_k$
+    in $G_k -x$. On the other hand $G_i$ has an $\alpha$-$\beta$-path $P'$
+    with endpoints $y_{i-1},y_i$ in $G_i -x$. Since $G_x$ is colored identically
+    in $c_k$ and $c_i$, we have that $P \cup P'$ is a two-colored graph,
+    connected since both paths contain $y_{i-1}$ and having three vertices 
+    of degree 1. This is impossible.
 \end{proof}
 
 \paragraph{Lemma 55} 
 The list chromatic number of $ G = K_{n,n} $, with $n = \binom{2k}{k}$ 
 is at least $k+1$.
 \\
-This means there exists a graph which has much greater list-chromatikc 
+This means there exists a graph which has much greater list-chromatic 
 number than chromatic number

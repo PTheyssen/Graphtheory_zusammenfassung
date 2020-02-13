@@ -88,14 +88,32 @@ $$ E^\prime = \{\{e_1,e_2\} \in \binom{E}{2}: e_1
 \paragraph{Theorem 25 (Ear-decomposition)} A graph $ G $ is 2-connected if and only 
 if it has an ear decomposition starting from any cycle of $ G$.
 \begin{proof}
-{\color{red}{TODO}}
+    $\Leftarrow$: \\
+    Assume first that $G$ has a ear-decomposition starting from a cycle $C$, i.e.
+    $C = G_0 \subseteq G_1 \subseteq ... \subseteq G_k = G$ Use induction on $i$
+    to show that $G_i$ is 2-connected.
+    $G_0$ is a cylce and therefore 2-connected. $G_{i+1}$ is obtained from $G_i$
+    by adding an ear. We now by IH that $G_i$ is 2-connected, therefore a cut vertex 
+    has to be on the ear. The ear is contained in a cycle therefore deleting a 
+    vertex from it does not disconnect $G_{i+1}$ therefore $G_{i+1}$ is 2-connected.
+
+    \bigskip \noindent
+    $\Rightarrow$: \\
+    Assume $G$ is 2-connected and $C$ is a cycle in $G$. Let $H$ be the largest 
+    subgraph of $G$ obtained by ear decomposition starting with $C$. $H$ has to 
+    be an induced subgraph of $G$ otherwise an edge incident to two vertice of 
+    $H$ would be and ear that could be added to $H$.
+
+    \smallskip \noindent
+    Assume $H \neq G$. Since $G$ is connected there is an edge from $v \in H$ to 
+    $u \in G \setminus H$. Since $G - u$ is connected consider a 
+    $v$-$w$-path $P$ in $G-u$ for some vertex $w \in (V(H) - u)$. Let 
+    $w^\prime$ be the first vertex from $V(H)-u$ on this path. Then 
+    $Pw^\prime \cup uv$ is an ear of $H$, a contradiction to minimality of $H$.
 \end{proof}
 
 \paragraph{Lemma 26} If $ G $ is 3-connected with $ G \neq K_4 $, then there exists 
 an edge $ e $ of $ G $ such that $ G \circ e $ is also 3-connected.
-\begin{proof}
- {\color{red}{TODO}}
-\end{proof}
 
 \paragraph{Theorem 3.6 (Tutte)} A graph $ G $ is 3-connected if and only if there 
 exists a sequence of graphs $ G_0,G_1,...,G_k$, such that 
@@ -103,18 +121,54 @@ exists a sequence of graphs $ G_0,G_1,...,G_k$, such that
     \item $G_0 = K_4$
     \item for each $ i = 1,...,k$ the graph $ G_i $ has two adjacent vertices $ x^\prime, 
     x^{\prime\prime} $ of degree at least 3, so that $ G_{i-1} = G_i \circ 
-    x^{prime}x^{\prime\prime} $
+    x^{\prime}x^{\prime\prime} $
     \item $ G_k = G$
 \end{itemize}
-\begin{proof}
-  {\color{red}{TODO}}
-\end{proof}
+\begin{proof} $ $ \\
+    $\Rightarrow$: \\
+    If $G$ is 3-connected, such a sequence exists by Lemma 26. To see the 
+    degree condition is satisfied, recall that $\delta(H) \geq 3$ for any 
+    3-connected graph $H$. Note that with each contraction, the number of 
+    vertices decrease by 1 and until we have at least 5 vertices, we can 
+    apply Lemma 26 and contract one more edge. Thus we stop at a graph
+    $G_0$ which has 4 vertices and $\delta(G_0) \geq 3$ from which 
+    $G_0 \cong K_4$ follows.
 
-\paragraph{Theorem 27 (Mader)} Every graph $ G = (V,E) $ of average degree at least $ 4k $
-has a $k$-connected subgraph.
-\begin{proof}
-    
+    \bigskip
+    $\Leftarrow$ \\
+    We consider a sequence of graphs satisfying the given conditions and show 
+    that each graph in the sequence is 3-connected. Assume that $G_i$ is 
+    3-connected, $G_{i+1}$ is not, and $G_i = G_{i+1} \circ xy$, for an edge $xy$
+    of $G_{i+1}$ such that $d(x),d(y) \geq 3$. Then $G_{i+1}$ has a cut-set 
+    $S$ with at most two vertices.
+
+    \smallskip \noindent
+    Case 1: $x,y \in S$. \\
+    Then $G_i$ has a cut vertex, a contradiction.
+
+    \smallskip \noindent
+    Case 2: $x \in S, y \notin S, y$ is not the only vertex of its component in 
+    $G_{i+1} - S$.\\
+    Then $G_i$ has a cut set of size at most 2, a contradiction.
+
+    \smallskip \noindent
+    Case 3: $x \in S, y \notin S, y$ is the only vertex of its component in 
+    $G_{i+1} - S$.\\
+    Then $d(y) \leq 2$, a contradiction to the fact that $d(y) \geq 3$
+
+    \smallskip \noindent
+    Case 4: $x,y \notin S$\\
+    Then $x$ and $y$ are in the same component of $G_{i+1} - S$. So $S$ is 
+    a cut set of $G_i$, a contradiction.
 \end{proof}
+Note that this theorem gives a way to generate all 3-connected graphs by starting with 
+$K_4$ and creating a sequence of graphs by \enquote{uncontracting} a vertex such that 
+the degrees of new vertices are at least 3 each.
+
+
+\paragraph{Theorem 27 (Mader)} Every graph $ G = (V,E) $ of average degree at least $4k$
+has a $k$-connected subgraph.
+
 
 \paragraph{Definition}
 \begin{itemize}
