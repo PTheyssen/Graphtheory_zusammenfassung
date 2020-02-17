@@ -15,13 +15,13 @@
     $R(k) \in \mathbb{N}$ is the smallest $n$ such that every 
     2-edge-coloring of $K_n$ contains a monochromatic $K_k$.
 
-    \item \textbf{asymmetric Ramsey number $R(k,l)$:} is the smallest $n\in\mathbb{N}$
-    such that every 2-edge-coloring of a $K_n$ contains a red $K_k$
-    or a blue $K_l$. 
+    \item \textbf{asymmetric Ramsey number $R(k,l)$:} is the smallest 
+    $n\in\mathbb{N}$ such that every 2-edge-coloring of a $K_n$ contains 
+    a red $K_k$ or a blue $K_l$. 
 
-    \item \textbf{graph Ramsey number $R(G,H)$:} is the smallest $n\in\mathbb{N}$
-    such that every red-blue edge-coloring of $K_n$ contains a red $G$
-    or a blue $H$.
+    \item \textbf{graph Ramsey number $R(G,H)$:} is the smallest
+    $n\in\mathbb{N}$ such that every red-blue edge-coloring of $K_n$ 
+    contains a red $G$ or a blue $H$.
 
     \item \textbf{hypergraph Ramsey number $R_r(l_1,...,l_k)$:} is the smallest 
     $n\in\mathbb{N}$ such that every $k$-coloring of the edges of the 
@@ -29,9 +29,10 @@
     a clique of size $l_i$ whose edges all have color $i$, for some 
     $ i \in \{1,...,k\}$.
 
-    \item \textbf{induced Ramsey number $IR(G,H)$:} is the smallest $n \in \mathbb{N}$
-    for which there is a graph $F$ on $n$ vertices such that in any red-blue coloring
-    of $E(F)$, there is an induced subgraph of $F$ isomorphic to $G$ with all 
+    \item \textbf{induced Ramsey number $IR(G,H)$:} is the smallest $n \in 
+    \mathbb{N}$ for which there is a graph $F$ on $n$ vertices such that in any 
+    red-blue coloring of $E(F)$, there is an induced
+    subgraph of $F$ isomorphic to $G$ with all 
     its edgs colored red or there is an induced subgraph of $F$ isomorphic to 
     $H$ with all its edges colored blue.
 
@@ -43,10 +44,58 @@
 
 \paragraph{Ramsey Theorem} For any $k \in \mathbb{N}$ we have 
 $$ \sqrt{2}^k \leq R(k) \leq 4^k $$ 
-In particular the Ramsey numbers, the asymmetric Ramsey numbers an the graph 
+In particular the Ramsey numbers, the asymmetric Ramsey numbers and the graph 
 Ramsey numbers are finite.
 \begin{proof}
-    {\color{red}{TODO}}
+    Proofsketch: \\
+    Upperbound: consider sequence of vts and their monochromatic nbhs, the 
+    number is divided by two at each step 
+
+    \smallskip
+    Lowerbound: Consider $K_{\sqrt{2}^k}$ we will show that there
+    exists a coloring for which there is no monochromatic coloring of a clique 
+    with $k$ vertices. Color edges blue 
+    and red with prob.  $1/2$, show that Prob(there is a 
+    monochromatic clique on $k$ vertices) is less than one 
+
+    \bigskip
+    For the upper bound, consider a red blue  edge-coloring of $G = K_{4^k}$.
+    Construct a sequence of vertices $x_1,...,x_{2k}$, a 
+    sequence of vertex sets $X_1,...,X_{2k}$, and a sequence of colors
+    $c_1,...,c_{2k_1}$ as follows. Let $x_1$ be any arbitrary vertex, $X_1 =
+    V(G)$. Let $X_2$ be the largest monochromatic neighborhood of $x_1$ in 
+    $X_1$, i.e. the largest subset of vertices from $X_1$, such that all edges 
+    from this subset to $x_1$ have the same color. Call this color $c_1$. 
+    We see that $|X_2| \geq \lceil\frac{|X_1|-1}{2}\rceil \geq 4^k /2$. Let
+    $x_2$ be an arbitrary vertex in $X_2$. Let $X_3$ be the largest 
+    monochromatic neighborhood of $x_2$ in $X_2$ with respective edges of 
+    color $c_2$, and so on let $X_m$ be the largest monochromatic neighborhood
+    of $x_{m-1}$ with respective color $c_{m-1}$ in $X_{m-1}, x_m \in X_m$.
+    Wee see that $|X_m| \leq 4^k / 2^{m-1}$. Thus $|X_m| > 0$ as long as 
+    $2k > (m-1)$, i.e. as long as $m \leq 2k$. Consider vertices 
+    $x_1,...,x_{2k}$ and colors $c_1,...,c_{2k-1}$. At least $k$ of the colors
+    say $c_{i1},c_{i2},...,c_{ik}$ are the same by pigeonhole principle, say
+    wlog red. Then $c_{i1},c_{i2},...,c_{ik}$ induce a $k$-vertex clique all
+    of whose edges are red.
+
+    \bigskip
+    For the lower bound, we shall construct a coloring of $K_n, n = 2^{k/2}$ 
+    with no monochromatic cliques on $k$ vertices. Let's color each edge red 
+    with probability $\frac{1}{2}$ and blue with probability $\frac{1}{2}$.
+    Let $S$ be a fixed set of $k$ vertices. Then 
+    $$ \text{Prob( } S \text{ induces a red clique)} = 2^{-\binom{k}{2}} $$
+    Thus Prob($S$ induces monochromatic clique) = $ 2^{-\binom{k}{2} + 1}$.
+    Therefore
+    \begin{align*}
+        \text{Prob(monochr. clique on k vertices)} 
+        &\leq \binom{n}{k} 2^{-\binom{k}{2} +1} \\
+        &\leq \frac{n^k}{k!} 2^{-k^2/2 + k/2+1} \\
+        &\leq \frac{2^{k/2k+1}}{k!} \\
+        &\leq 1
+    \end{align*}
+
+
+
 \end{proof}
 
 \paragraph{Remark}
@@ -57,20 +106,62 @@ $R(2) = 2, R(3) = 6, R(4) = 18$ and $43 \leq R(5) \leq 48$.
 \paragraph{Theorem (Erd\H{o}s, Szekeres)} Any list of more than $n^2$ numbers 
 contains a nondecreasing or non-increasing sublist of more than $n$ numbers.
 \begin{proof}
-    {\color{red}{TODO}}
-\end{proof}
-
-\paragraph{Theorem (Erd\H{o}s, Szekeres)} For any integer $m \geq 3$ there is 
-an integer $N = N(m)$ such that if $X$ is a set of $N$ points on the plane 
-such that no three points are on a line, then $X$ contains a vertex set of a convex 
-$m$-gon.
-\begin{proof}
-    {\color{red}{TODO}}
+    Let $a_1,...,a_{n^2 + 1}$ be a list of numbers. Let $u_i$ be the length of 
+    a longest non-decreasing sublist ending with $a_i$. Let $d_i$ be the 
+    length of a longest non-increasing sublist ending with $a_i$. Assume 
+    that the statement of the theorem is false. Then $u_i, d_i \leq n$ and 
+    there are at most $n^2$ distinct pairs $(u_i,d_i)$. Since there are more 
+    than $n^2$ numbers there are indices $i < j$ such that 
+    $(u_i,d_i) = (u_j,d_j)$. If $a_i \leq a_j$, we have $u_i < u_j$. 
+    If $a_i \geq a_j$, we have $d_i < d_j$, a contradiction.
 \end{proof}
 
 \paragraph{Definition}
 Let $R(p,q;r)$ be the hypergraph Ramsey number for $r$-uniform hypergraphs.
 The following Theorem show the existence of hypergraph Ramsey number.
+\begin{center}
+    $R(p,q;r) =$ min$\{N: \forall c: \binom{[N]}{r} \to \{0,1\}$ \\
+    $\exists A \subseteq [N], |A| = p, \forall A' \in \binom{A}{r}\; c(A') = 0$
+    or \\
+    $\exists B \subseteq [N], |B| = q, \forall B' \in \binom{B}{r}\; c(B') = 1$
+\end{center}
 
 \paragraph{Theorem 83} For any parametres $p,q,r \geq 2$
 $$ R(p,q;r) \leq R(R(p-1,q;r), R(p,q-1;r);r-1) + 1 $$ 
+\begin{proof}
+    Let $c: \binom{X}{r} \to \{red,blue\}$, where 
+    $|X| = R(R(p-1,q;r), R(p,q-1;r);r-1) + 1$. We shall show that there is a 
+    red $r$-clique on $p$ vertices or a blue $r$-clique on $q$ vertices.
+    Let $x \in X$. Let $c': \binom{X-x}{r-1} \to \{red,blue\}$ be defined 
+    as follows: for any $A \subseteq X - x$, let $c'(A) = c(A \cup x)$. Let 
+    $p_1 = R(p-1,q;r)$ and $q_1 = R(p,q-1;r)$. Since $|X-x| = R(p_1,q_1;r-1)$,
+    there is a red $(r-1)$-clique on vertex set $X', |X'| = p_1$, or a blue 
+    $(r-1)$-clique on vertex set $X'', |X''| = q_1$. Assume the former. The 
+    latter is treated similary. Then in $c$, all sets $A \cup x$ are red where
+    $A \subseteq X'$. Since $|X'| = p_1 = R(p-1,q;r)$, then in $X'$ under $c$
+    there is either a blue $r$-clique of size $q$ and we are done, or there is 
+    a red $r$-clique on vertex set $X^* \subseteq X', |X^*| = p-1$. But then
+    $X^* \cup x$ forms a red $r$-clique under $c$ on $p$ vertices 
+    and we are done.
+\end{proof}
+
+\paragraph{Theorem (Erd\H{o}s, Szekeres)} For any integer $m \geq 3$ there is 
+an integer $N = N(m)$ such that if $X$ is a set of $N$ points on the plane 
+such that no three points are on a line, then $X$ contains a vertex set
+of a convex $m$-gon.
+\begin{proof}
+   Let $N = R(m,5;4)$. For each 4-element subset $X'$ of $X$ color it red if
+   the convex hull $X'$ is a 4-gon, it blue if the convex hull of $X'$ is a 
+   triangle. By definition of $R$, there is either a set $A$ of $m$ points, 
+   such that $\binom{A}{4}$ is red, or a set $B$ of 5 points such that 
+   $\binom{B}{4}$ is blue. Assume the latter. Then we see in particular that 
+   the convex hull of $B$ is a triangle $T$ and there are two vertices $u,v$
+   of $B$ inside this triangle. Consider a line through $u,v$ it splits the 
+   plane in two parts, one containing one vertex of $T$, another 
+   two vertices of $T$, call them $x,y$. Then the convex hull of $\{u,v,x,y\}$
+   is a 4-gon, so that $\binom{A}{4}$ is red. We claim that $A$ forms a vertex 
+   set of a convex $m$-gon. Assume not, and there is a point $x$ of $A$ inside 
+   the convex hull $A'$ of $A$. Triangulate $A'$. Then $x$ will be inside
+   one of the triangles, say with vertex set $\{y,z,w\}$. Then $\{x,y,z,w\}$
+   must be colored blue, a contradiction.
+\end{proof}

@@ -1,7 +1,7 @@
 \section{Hamiltonian cycles}
 \paragraph{Definition}
 \begin{itemize}
-    \item A cycle $ C $ in a graph $ G $ is $Hamiltonian$ 
+    \item A cycle $C$ in a graph $G$ is $Hamiltonian$ 
     if it contains all vertices.
 
     \item  A graph that has a Hamiltonian cycle is called Hamiltonian graph.
@@ -12,8 +12,8 @@
 If $G$ has a Hamiltonian cycle, the for every non-empty $S \subseteq V$ the 
 graph $G - S$ cannot have more than $|S|$ components.
 \begin{proof}
-    Let $ C $ be a Hamiltonian cycle of $ G$.
-    Let $ S \subseteq V(G) $, $ S \neq \emptyset $, $ t := $ \# components of $ G - S $
+    Let $C$ be a Hamiltonian cycle of $G$.
+    Let $S \subseteq V(G)$, $S \neq \emptyset$, $t :=$ \# components of $G - S$
     There are at least 2 edges of $ C $ between each component of $ G - S $
     and $ S$. If $ e = \#$ edges of $ C $ between $ S $ and $ V - S$, 
     we have 
@@ -24,7 +24,16 @@ graph $G - S$ cannot have more than $|S|$ components.
 \paragraph{Theorem 10.2 Dirac} Every graph with $n \geq 3$ vertices and 
 minimum degree at least $\frac{n}{2}$ has a Hamiltonian cycle.
 \begin{proof}
-    {\color{red}{TODO}}
+    First we note that $G$ is connected, otherwise a smaller component has all 
+    vertices of degree at most $n/2-1$. Consider a longest path 
+    $P = (v_0,...,v_k)$. Then $N(v_0),N(v_k) \subseteq V(P)$. Since 
+    $|N(_0)|,|N(v_k)| \geq n/2$, and $k \leq n-1$, we have by pigeonhole
+    principle that $v_0v_k \in E(G)$ or there is $i, 0 < i < k-1$ such 
+    that $v_0v_{i+1} \in E(G)$ and $v_iv_k \in E(G)$. In any case there is a 
+    cycle $C$ on $k+1$ vertices in $G$. If $k+1=n$ we are done. If $k+1<n$, 
+    since $G$ is connected there is a vertex $v$ not in $C$ that is adjacent to
+    a vertex with $C$. Then $v$ and $C$ induce a graph that contains a spanning
+    path, i.e. a path on $k+2$ vertices, a contradiction to maximality of $P$.
 \end{proof}
 
 \paragraph{Ore's Thm.}

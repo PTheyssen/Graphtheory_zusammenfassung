@@ -1,13 +1,13 @@
 \section{Extremal graph theory}
-In this chapter we study how global parameters of a graph, such as its edge density 
-or chromatic number, can influence its local substructures.
+In this chapter we study how global parameters of a graph, such as its edge 
+density or chromatic number, can influence its local substructures.
 Two categories of questions:
 \begin{itemize}
-    \item global assumptions that might imply that $ H $ as a $minor$ (or topological minor)
-    it will suffice to raise $ ||G|| $ above the value of some linear function 
-    of $|G|$.
-    \item global assumptions that might imply the existence of some given graph $ H $ 
-    as  a $subgraph$ 
+    \item global assumptions that might imply that $ H $ as a $minor$ 
+    (or topological minor)it will suffice to raise $ ||G|| $ above the 
+    value of some linear function of $|G|$.
+    \item global assumptions that might imply the existence of some 
+    given graph $ H $ as a $subgraph$ 
 \end{itemize}
 
 \paragraph{Definition} 
@@ -19,9 +19,9 @@ Two categories of questions:
     \item Example: ex$(n,P_3) = \lfloor\frac{n}{2}\rfloor$, EX$(n,P_3)
     = \{\lfloor n\rfloor \cdot K_2 + (n \text{ mod } 2) \cdot E_1\} $
     \item Let $ n $ and $ r $ be integers with $ 1 \leq r \leq n $ The 
-    \textit{Turan graph} $T_r(n)$ is the unique complete $r$-partite graph of order 
-    $n$ whose partite sets differ by at most 1 in size. It does not contain 
-    $K_{r+1}$, we denote $||T_r(n)||$ by $t_r(n)$
+    \textit{Turan graph} $T_r(n)$ is the unique complete $r$-partite graph of 
+    order $n$ whose partite sets differ by at most 1 in size. 
+    It does not contain $K_{r+1}$, we denote $||T_r(n)||$ by $t_r(n)$
 \end{itemize}
 
 \paragraph{Calculating Turan Number} $ $\\
@@ -30,24 +30,27 @@ Let $n = pr + s$ where $ p $ and $ s $ are integers, and
 $ 0 \leq s < r $, then $ T_r(n) $ has $ s $ parts of size $p + 1$
 and $r - s$ parts of size $ p$. And then simply count edges by hand.
 
-\paragraph{Lemma 58} For any $ r,n \geq 1, t_r(n+r) = t_r(n) + n(r-1) + \binom{r}{2}$
+\paragraph{Lemma 58} For any $ r,n \geq 1, t_r(n+r) = t_r(n) + n(r-1) 
++ \binom{r}{2}$
 \begin{proof}
-    Consider $ G = T_r(n+r) $ graph with parts $ V_1,...,V_r$. Let $ v_i \in V_i,
-    i = 1,...,r$. Then $ G^\prime = G - \{v_1,...,v_r\} $ is isomporphic to $T_r(n)$.
-    We have that $ ||G|| - ||G^\prime|| $ is equal to the number of edges incident to 
-    $ v_i$'s for some $ i = 1,...,r$. This number is 
-    $$ \underbrace{n(r-1)}_{\text{every vertex in } T_r(n) \text{ gets (r-1) new}} + 
-    \underbrace{\binom{r}{2}}_\text{edges between new r vts} $$
+    Consider $ G = T_r(n+r) $ graph with parts $ V_1,...,V_r$. Let 
+    $ v_i \in V_i, i = 1,...,r$. Then $ G^\prime = G - \{v_1,...,v_r\} $ 
+    is isomporphic to $T_r(n)$. We have that $ ||G|| - ||G^\prime|| $ is
+    equal to the number of edges incident to $ v_i$'s for some $ i = 1,...,r$.
+    This number is $$ \underbrace{n(r-1)}_{\text{every vertex in } T_r(n) 
+    \text{ gets (r-1) new}}
+    + \underbrace{\binom{r}{2}}_\text{edges between new r vts} $$
 \end{proof}
 
-\paragraph{Lemma 59} Among all $n-$vertex $r$-partite graphs, $ T_r(n) $ has the largest 
-number of edges.
+\paragraph{Lemma 59} Among all $n-$vertex $r$-partite graphs, $ T_r(n) $ has
+the largest number of edges.
 \begin{proof}
     Let first $ r = 2 $: \\
-    Let $ G $ be an $n$-vertex bipartite graph with largest possible
-    number of edges. Then clearly $ G $ is complete bipartite. Assume that two parts $ V $
-    and $ U $ of $ G $ differ in size by at least 2, so $ |V| > |U| + 1$. Put one 
-    vertex from $ V $ to $ U $ to obtain new parts $ V^\prime $ and $ U^\prime $ 
+    Let $G$ be an $n$-vertex bipartite graph with largest possible
+    number of edges. Then clearly $G$ is complete bipartite. Assume that 
+    two parts $ V $ and $U$ of $G$ differ in size by at least 2,
+    so $ |V| > |U| + 1$. Put one vertex from $ V $ to $ U $
+    to obtain new parts $ V^\prime $ and $ U^\prime $ 
     and let $ G^\prime $ be complete bipartite graph with parts $ V^\prime $ and 
     $ U^\prime $. Then $ ||G^\prime|| = |V^\prime||U^\prime| = (|V|-1)(|U|+1) 
     = |V||U| - |U| + |V| -1 > |V||U| - |U| + |U| + 1 - 1 = |V||U| = ||G||$, a 
@@ -55,13 +58,13 @@ number of edges.
 
     \bigskip \noindent
     If $ r > 2 $: \\
-    Consider any two parts $ U, V $ of an $r$-partite $G$. Assume that $ U $ differs
-    from $ V $ by at least 2 in size. Let $ X $ be the remaining set of vertices. 
-    Then $ ||G|| = ||G[X]|| + |X|(n-|X|) + ||G[U\cup V]|| $.  Let $ G^\prime $ be a 
-    graph on the same set of vertices as $ G $ that differs from $ G $ only on edges 
-    induced by $ U \cup V $ and so that $ G^\prime[U \cup V] $ is a balanced complete 
-    bipartite graph. Then from the previous paragraph with $ r = 2 $, we see that 
-    $ ||G^\prime[U \cup V]|| > ||G[U \cup V]||$. Thus $ ||G^\prime|| > ||G||$, a
+    Consider any two parts $U,V$ of an $r$-partite $G$. Assume that $U$ differs
+    from $V$ by at least 2 in size. Let $X$ be the remaining set of vertices. 
+    Then $ ||G|| = ||G[X]|| + |X|(n-|X|) + ||G[U\cup V]|| $.  Let $G'$ be a 
+    graph on the same set of vertices as $G$ that differs from $G$ only on edges 
+    induced by $ U \cup V $ and so that $ G'[U \cup V] $ is a balanced complete 
+    bipartite graph. Then from the previous paragraph with $r = 2$, we see that 
+    $ ||G'[U \cup V]|| > ||G[U \cup V]||$. Thus $ ||G'|| > ||G||$, a
     contradiction. Thus any two parts of $ G $ differ in size by at most 1. In 
     addition we see as before that $ G $ is complete $r$-partite. Thus $ G $ is 
     isomporphic to $T_r(n)$.      
@@ -83,33 +86,71 @@ $$ \lim_{n\to\infty} \frac{t_r(n)}{\binom{n}{2}} = 1 - \frac{1}{r}$$
     More manipulation and dividing by $ \binom{n}{2} $ gives the result.
 \end{proof}
 
-\paragraph{Theorem 62 (Mantel's theorem)} If a graph $ G $ on n vertices contains 
+\paragraph{Theorem 62 (Mantel's theorem)} If a graph $G$ on n vertices contains 
 no triangle then it contains at most $ \frac{n^2}{4} $ edges.
 \begin{proof} 
     We proceed by induction on $ n $. For $ n = 1 $ and $ n = 2$. The result 
-    is trivial, so assume that $ n > 2 $ and we know it to be true for $ n - 1$.
-    Let $ G $ be a graph on $ n $ vertices. Let $ x $ and $ y $ be two adjacent vertices
-    in $ G $. Since every vertex in $ G $ is connected to at most one of $ x $ and $ y$, 
-    there are at most $ n - 2 $ edges between $ \{x,y\} $ and $ V(G) - \{x,y\} $. 
-    Let $ H = G - \{x,y\}$. Then $ H $ contains no triangles and thus, by induction, 
-    $ H $ has at most $ \frac{(n - 2)^2}{4} $ edges. Therefore the total number 
-    of edges in $ G $ is at most
-
+    is trivial, so assume that $ n > 2 $ and we know it to be true for $n - 1$.
+    Let $G$ be a graph on $n$ vertices. Let $x$ and $y$ be two adjacent vertices
+    in $G$. Since every vertex in $G$ is connected to at most one of $x$ and
+    $y$, there are at most $ n - 2 $ edges between $ \{x,y\} $ and $ V(G) 
+    - \{x,y\}$. Let $ H = G - \{x,y\}$. Then $ H $ contains no triangles 
+    and thus, by induction, $ H $ has at most $ \frac{(n - 2)^2}{4} $ edges. 
+    Therefore the total number of edges in $ G $ is at most
 \end{proof}
 
-\paragraph{Theorem 6.2 (Turan's Theorem)} For all integers $ r > 1 $ and $ n \geq 1$,
+\paragraph{Theorem 6.2 (Turan's Theorem)} For all integers $r>1$ and $n \geq 1$,
 any graph $ G $ with $ n $ vertices, ex$(n,K_r)$ edges and $ K_r \nsubseteq G $ 
 is a $ T_{r-1}(n) $. In other words EX$(n,K_r) = \{T_{r-1}(n)\}$.
 \begin{proof}
-       {\color{red}{TODO}}
+    We use induction on $n$ for a fixed $r$. If $n \leq r-1$, then $K_n$ is the 
+    graph with largest number of edges, $n$ vertices and no copy of $K_r$. 
+    Since the Turan graph is $K_n$ if $n \leq r-1$ the basis case is complete.
+
+    \smallskip \noindent
+    Assume that $n > r-1$. Let $G \in EX(n,K_r)$. Then $G$ contains a copy $K$
+    of $K_{r-1}$ otherwise we could add an edge to $G$ without creating a copy 
+    $K_r$, thus violating maximality of $G$. Let $G' = G-V(K)$. By I.H.
+    $$||G'|| \leq t_{r-1}(n-(r-1))$$
+    Thus 
+    \begin{align}
+     ||G|| = ||G'|| + ||K|| + ||G[V(K), V-V(K)]||  
+    \leq t_{r-1}(n-r+1) + \binom{r-1}{2} + (n-r+1)(r-2) 
+    \end{align}
+    Indeed, the last term holds since any vertex of $V-V(K)$ is adjacent to at 
+    most $|V(K)|-1=r-2$ vertices of $K$ (otherwise we would have a copy of 
+    $K_r$ in $G$).
+    By Lemma 58 $t_{r-1}(n) = t_{r-1}(n-r+1) + \binom{r-1}{2} + (n-r+1)(r-2)$
+    and thus
+    $$||G|| \leq t_{r-1}(n)$$
+    On the other hand we know that $T_{r-1}(n)$ does not have $K_r$ as a 
+    subgraph, so the densest $K_r$-free graph $G$ should have at least as many
+    edges as $T_{r-1}(n)$. Thus $||G|| \geq t_{r-1}(n)$, therefore we get 
+    $||G|| = t_{r-1}(n)$ and all inequalities in (1) are equalities.
+    
+    \smallskip \noindent
+    So, in particular $||G'|| = t_{r-1}(n-r+1)$, by induction 
+    $G' = T_{r-1}(n-r+1)$, and each vertex of $V -V(K)$ sends exactly $r-2$ 
+    edges to $K$. Let $V_1,...,V_{r-1}$ be the parts of $G'$. For all 
+    $v \in V_1 \cup ... \cup V_{r-1}$, let $f(v) \in V(K)$ so that $v$ is not 
+    adjacent to $f(v)$. If there are indices $i,j \in [r-1]$, $i\neq j$ so that 
+    there are vertices $v \in V_i, v' \in V_j$ for which $f(v) = f(v')$, then
+    $V(K) \cup \{v,v'\}$ induces an $r$-clique in $G$, a contradiction.
+    
+    Therefore we can suppose that for all $i,j \in [r-1], i \neq j$ and for any
+    $v \in V_i$ and $v' \in V_j, f(v) \neq f(v')$. It implies that for any 
+    $i \in [r-1]$ and any $u,u' \in V_i, f(u) = f(u')$. Denote the vertices 
+    of $K$ by $v_1,...,v_{r-1}$ where $v_if(u_i)$ with $u_i \in V_i$.
+    
+    Then $G = T_{r-1}(n)$ with parts $V_i \cup \{v_i\}$
 \end{proof}
 
-\paragraph{Conjecture Erd\H{o}s-Sos} If $ |G| = n$ and $||G|| > \frac{(k-1)n}{2}$
+\paragraph{Conjecture Erd\H{o}s-Sos} If $|G| = n$ and $||G|| > \frac{(k-1)n}{2}$
 , then $ G $ contains all $k$-edge trees as subgraphs, i.e. for any tree 
 $ T $ on $ k $ edges ex$(n,T) \leq \frac{(k-1)n}{2}$
 
-\paragraph{Theorem 66 (Erd\H{o}s-Stone-Simonovits)} For any graph $ H $ and for any 
-fixed $ \epsilon > 0 $ there is $ n_0 $ such that for any $ n \geq n_0 $:
+\paragraph{Theorem 66 (Erd\H{o}s-Stone-Simonovits)} For any graph $ H $ and for
+any fixed $ \epsilon > 0 $ there is $ n_0 $ such that for any $ n \geq n_0 $:
 $$ (1 - \frac{1}{\chi(H)-1} - \epsilon)\binom{n}{2} \leq ex(n,H) \leq
 (1 - \frac{1}{\chi(H)-1}+\epsilon) \binom{n}{2} $$
 
@@ -173,7 +214,8 @@ $$ ex(n,K_{t,t}) \leq \frac{z(n,n;t,t)}{2} $$
 
 \paragraph{Theorem 69} For any positive $ t$, and $ n > t $, there are 
 positive constants $ c $ and $ c^\prime $ such that 
-$$ c^\prime \cdot n^{2 -\frac{2}{t+1}} \leq ex(n,K_{t,t}) \leq c \cdot n^{2 - \frac{1}{t}} $$
+$$ c^\prime \cdot n^{2 -\frac{2}{t+1}} \leq ex(n,K_{t,t}) \leq c 
+\cdot n^{2 - \frac{1}{t}} $$
 
 \paragraph{Theorem 71} 
 $$ ex(n,C_4) = \frac{1}{2}n^{3/2} + \mathcal{o}(n^{3/2}) $$ 
@@ -187,8 +229,8 @@ vertex sets and $ \epsilon > 0 $.
 \begin{itemize}
     \item \textit{the density} $d(X,Y)$ of $(X,Y)$ is 
     $$ d(X,Y) := \frac{||X,Y||}{|X|,|Y|} $$ 
-    \item For $ \epsilon > 0 $ the pair $ (X,Y)$ is an $\epsilon$-$regular$ $pair$
-    if we have 
+    \item For $ \epsilon > 0 $ the pair $ (X,Y)$ 
+    is an $\epsilon$-$regular$ $pair$ if we have 
     $$ |d(X,Y) - d(A,B)| \leq \epsilon $$ 
     for all $ A \subseteq X, B \subseteq Y $ with 
     $|A| \geq \epsilon|X| $ and $ |B| \geq \epsilon|Y| $ \\
@@ -247,7 +289,8 @@ part contains exactly $ s $ vertices) as a subgraph.
 \paragraph{Corollary 73} Erd\H{o}s-Stone together with 
 $ \lim_{n\to\infty} / \binom{n}{2} = 1 - 1 / r $ yields an asymptotic formula 
 for the extremal number of any graph $ H $ on at least one edge:
-$$ lim_{n\to\infty} \frac{ex(n,H)}{\binom{n}{2}} = \frac{\chi(H)-2}{\chi(H)-1} $$
+$$ lim_{n\to\infty} \frac{ex(n,H)}{\binom{n}{2}} 
+= \frac{\chi(H)-2}{\chi(H)-1} $$
 
 \paragraph{Substructures in sparse Graphs}
 \textbf{Key message:} extremal numbers for minors are linear in $|E|$

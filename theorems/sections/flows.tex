@@ -2,24 +2,51 @@
 
 \paragraph{Definitions}
 \begin{itemize}
-    \item circulation
-    \item network, source, sink, capacity
+    \item A $multigraph$ is a triple, $(V,E,T^*)$, where $T^*$ is a set of 
+    tuples $(\{x,y\},e)$ with $x,y \in V(G)$ and $e \in E$, such that for each
+    $e \in E$ there is a unique tuple $(\{x,y\},e)$ in $T^*$. We say $x$ and 
+    $y$ are endpoints of $e$, if $x=y$ we say that $e$ is a loop.
+    If $(\{x,y\},e), (\{x,y\},e') \in T^*$, $e \neq e', x \neq y$ we say 
+    that $e$ and $e'$ are parallel or multiple edges.
+
+    \item we assign a value to an ordered triple $(x,e,y)$. Let 
+    $T(G) = \{(x,e,y): (\{x,y\},e) \in T^*(G)\}$
+    
+    \item Let $f: T(G) \to H$ and let $X,Y \subseteq V(G)$, we define 
+    $$ f(X,Y) := \sum_{x\in X, y\in Y, (x,e,y)\in T(G), x\neq y} f(x,e,y)$$
+    and write $f(x,Y)$ for $f(\{x\}, Y)$
+
+    \item Let $G$ be a graph $s,t \in V(G)$, be distinct vertices and  
+    $c: T(G) \to \mathbb{N} \cup \{0\}$. We call a quadruple $N = (G,s,t,c)$
+    a $network$ with $source$ $s$, $sink$ $t$ and \textit{capacity function c}
 \end{itemize}
 
-\paragraph{Definition Network Flow} $ $
+
+
+\paragraph{Definition Network Flow} 
+A function $f : T(G) \to \mathbb{R}$ is a \textit{network flow} or 
+\textit{N-flow} if 
 
 \smallskip \noindent
-\textbf{(F1)} 
+\textbf{(F1)} $f(x,e,y) = - f(y,e,x)$ for any edge $e$ with endpoints $x,y$
+and $x \neq y$
 
 \smallskip \noindent
-\textbf{(F2)}
+\textbf{(F2)} $f(x,V(G)) = 0, x \in V(G) - \{s,t\}$ 
 
 \smallskip \noindent
-\textbf{(F3)}
+\textbf{(F3)} $f(x,e,y) \leq c(x,e,y)$ for any edge $e$ with endpoints $x,y$
+and $x \neq y$
+
 
 \begin{itemize}
-    \item cut
-    \item capacity of a cut
+    \item A $cut$ in a network $N$ is a pair $(S,\overline{S})$, where $S$
+    is a subset of vertices of $G$ such that $s \in S, t \notin S$ and 
+    $\overline{S} = V(G) - S$
+
+    \item \textit{capacity of a cut}:
+    $$ c(S,\overline{S}) = \sum_{x\in S, y \in \overline{S}, (x,e,y) \in T(G)}
+    c(x,y) $$
 \end{itemize}
 
 \paragraph{Lemma 100} For any cut $(S,\overline{S})$
@@ -41,7 +68,52 @@ $$ max\{|f|: f \text{ is an } N\text{-flow}\} =
 and there is an integral flow $f: T \to \mathbb{Z}_{\geq0}$
 with this maximum flow value.
 \begin{proof}
-    {\color{red}{TODO}}
+   Since $|f| = f(s,V) = f(S,\overline{S}) \leq c(S,\overline{S})$, for any 
+   cut $(S,\overline{S})$, we have that 
+       \begin{center}
+        max$\{|f|: f$ is an $N$-flow$\} \leq$ min$\{c(S,\overline{S}: 
+        (S,\overline{S})$ is a cut$\}$
+       \end{center}
+   Next, we shall construct a flow $f$ such that $|f| =$ 
+   min$\{c(S,\overline{S}): (S,\overline{S})$ is a cut$\}$
+   
+   We shall define $f_0,f_1,...$ - a sequence of $N$-flows such that 
+   $f_0(x,e,y) = 0$ for all $(x,e,y) \in T(G), f_i$ assigns integer values 
+   and $|f_i| \geq |f_{i-1}| + 1$ for $i \geq 1$. Note that since 
+   $|f_i| \leq$ min$\{c(S,\overline{S}: (S,\overline{S}$ is a cut$\}$ for 
+   all $i = 0,1,...$, the sequence $f_0,f_1,...$ is finite.
+   Let $f_n$ be defined. We shall either let $f = f_n$ or define $f_n+1$.
+
+   \bigskip \noindent
+   \textbf{Case 1} There is a sequence of vertices $x_0 = s,x_1,...,x_m = t$
+   and edges $e_0,...,e_{m-1}$ such that $x_ix_{i+1} = e_i \in E(G)$ and 
+   $f(x_i,e_i,x_{i+1}) < c(x_i,e_i,x_{i+1}, i = 0,...,m-1$
+   
+   \smallskip \noindent
+   Let $\epsilon = \text{ min}\{c(x_i,e_i,x_{i+1} - f(x_i,e_i,x_{i+1}):
+   i = 0,...,m-1\}$. Note that $\epsilon \in \mathbb{N}$. Let 
+   \begin{center}$f_{n+1}(x,e,y) = 
+       \begin{cases}
+            f_n(x,e,y), (x,e,y) \neq (x_i,e_i,x_{i+1}), = i = 0,...,m-1 \\
+            f_n(x,e,y)+\epsilon, (x,e,y) = (x_i,e_i,x_{i+1}), = i = 0,...,m-1 \\
+            f_n(x,e,y)-\epsilon, (x,e,y) = (x_{i+1},e_i,x_i), = i = 0,...,m-1 
+       \end{cases}$
+   \end{center}
+   Note that $f_{n+1}$ is an $N$-flow, it takes integer values, and 
+   $|f_{n+1}| = |f_n| + \epsilon \geq |f_n| + 1$.
+
+   \bigskip \noindent
+   \textbf{Case 2} Case 1 does not hold. Let 
+   \begin{center}
+        $S = \{v \in V: \exists$path $s=x_0,e_0,x_1,...,e_q,x_{q+1} = v,$ \\     
+        $ f(x_i,e_i,x_{i+1}) < c(x_i,e_i,x_{i+1}), i = 0,...,q\}$
+   \end{center}
+   Note that since we are not in Case 1, $t \notin S$. Also $s \in S$. Thus
+   $(S,\overline{S})$. From the definition of $S$, we see that 
+   $f_n(x,e,y) = c(x,e,y)$ for all $x \in S, y \in \overline{S}, (x,e,y) 
+   \in T(G)$. Thus $f_n(S,\overline{S}) = c(S,\overline{S})$ and so 
+   $|f_n| \geq$ min$\{c(S,\overline{S}: (S,\overline{S})$ is a cut$\}$. Let
+   $f = f_n$. Since the sequence $f_0,f_1,...$ is finite Case 2 must occur.
 \end{proof}
 
 \paragraph{No Group-valued flows!!}
