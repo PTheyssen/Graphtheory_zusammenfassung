@@ -154,4 +154,80 @@ one vertex in common. Prove that there is a vertex common to all $ T_i$.
    this leaf. 
 \end{proof}
 
-\paragraph{problem 7}
+\paragraph{Problem 15}
+Let $G$ be a nonempty connected graph and let $x \in V(G)$. For each $r \geq 0$
+let $B_r = B_r(x)$ be the set of vertices in $G$ distance exactly $r$ from 
+$x$. Prove that for some $r$:
+$$ \chi(G) \leq \chi(G[B_r]) + \chi(G[B_{r+1}]) $$
+\begin{proof} $ $\\
+Proof sketch: color layer by layer use induction create proper coloring from 
+from one with one less layer. Take new colors from $\{1,...,\chi(B_r)
++ \chi(B_{r+1})\}$ these exists otherwise choice of $r$ not maximal. 
+
+\bigskip
+Proof: \\
+Let $x \in V(G)$ and note that since $G$ is connected, for som $t \geq 0$ the 
+sets $B_0 = \{x\},...,B_t$ partition the vertex set. By the definition of 
+each $B_r$, there are no edges in $G$ between $B_i$ and $B_j$ whenever 
+$|i-j| > 1$. In other words, the only edges in $G$ are possibly inside each 
+$B_i$ and between consecutive $B_i's$. For simplicity of notation we write 
+$B_r$ for $G[B_r]$. Now let $r \geq 0$ be such that $\chi(B_r) + \chi(B_{r+1})$
+is maximized and write 
+$$ C = \{1,...,\chi(B_r) + \chi(B_{r+1})\} $$
+Our aim is to color $G$ 'layer by layer'. Assign an arbitrary color from $C$
+to $B_0 = \{x\}$. Now assume that $B_0,...,B_{k-1}$ have been colored for some
+$k \geq 1$ with $\chi(B_0),...,\chi(B_{k-1})$ colors from $C$, respectiviely,
+such that the graph $G[B_0 \cup ... \cup B_{k-1}]$ is properly colored. Let us 
+show how to color $B_k$ with $\chi(B_k)$ colors from $C$ such that 
+$G[B_0 \cup ... \cup B_k]$ is properly colored. By assumption, there is some
+subset $C' \subseteq C$ of $\chi(B_{k-1})$ colors used to color $B_{k-1}$ in 
+the coloring constructed so far. We claim that $\chi(B_k)\leq |C\setminus C'|$.
+Indeed, if otherwise then
+$$ \chi(B_{k-1} + \chi(B_k) > |C'| + (|C| - |C'|) = |C| = \chi(B_r)
++ \chi(B_{r+1}) $$
+contradicting the maximal choice of $r$. Therefore we max choose a set of 
+$\chi(B_k)$ colors from $C \setminus C'$. These colors do not appear in the 
+coloring of $B_{k-1}$, so this is a legal coloring of the graph induced on
+$B_{k-1} \cup B_k$. As we observed earlier, there are no edges between 
+non-consecutive $B_i$'s so this defines a proper coloring of $G$ with 
+$|C| = \chi(B_r) + \chi(B_{r+1})$ colors.
+\end{proof}
+
+\paragraph{Problem 16}
+Let $G$ be a connected graph with minimum degree $\delta(G) = k \geq 1$. Prove
+that $G$ contains a path $x_1,...,x_k$ such that $G - \{x_1,...,x_k\}$ is 
+also connected. 
+
+\bigskip
+Proof sketch: consider longest path, suppose removing path of length $k$ is 
+disconnecting $G$, consider the two components. Consider a new longest path 
+in one of the components starting at a vertex $u$ with maximum number of nbhs,
+and we use that to build a longer path in $G$,
+from this we get a inequality which has to hold to not get contradiction,
+but if the inequality holds, then get contradiction of choice of $u$.
+
+\begin{proof}
+    Consider a longest path $P = x_1,..,x_l$. As every neighbor of $x_l$ lies 
+    on $P$, we must have $l \geq k+1$ Suppose,by way of contradiction, that 
+    $G' = G - \{x_1,...,x_k\}$ is disconnected. Therefore, $G'$ has at least 
+    two components; let $C$ be the component not containing $x_{k+1}$
+    Let $u \in C$ have the maximum number, say $d$, of neighbors in 
+    $\{x_1,...,x_k\}$. Note that $u$ cannot be joined to $x_1$ as otherwise we 
+    obtain a path longer than $P$. Also $u$ has at least one neighbor in 
+    $\{x_1,...,x_k\}$ (otherwise $G$ is disconnected).
+    It follows that $\delta(G[C]) \geq k-d > 0$ since vertices in $C$ only have
+    neighbors in $\{x_1,...,x_k\} \cup C$ and $\delta(G) = k$  and 
+    $\delta(G) = k$. Let $x_i$ be a neighbor of $u$ for some $i \in [k]$ and 
+    consider a longest path $Q$ in $G[C]$ that starts with $u$. This path 
+    has length at least $k-d$. Indeed, the last vertex of $Q$ has all its 
+    neighbors in the path $Q$, and $\delta(G[Q]) \geq k-d$. Lets try to finde
+    a longer path in $G$ using $Q$. If $u'$ denotes the last vertex of $Q$, 
+    consider the path $u'Qux_i...x_l$. It has length at least 
+    $$ (k-d) + 1 + (l-i) $$
+    As $P$ was a longest path in $G$, this is a contradiction unless 
+    $$ (k-d) + 1 + (l-i) \leq l-1 $$
+    which is equivalent to $i \geq k - d+2$. But then the neighborhood of $u$
+    in $\{x_1,...,x_k\}$ is contained in $\{x_{k-d+2},...,x_k\}$, which has 
+    size $k-(k-d+2)+1 = d-1 < d$, contradictin our choice of $u$. Thus
+    $G-\{x_1,...,x_k\}$ must be connected.
+\end{proof}
